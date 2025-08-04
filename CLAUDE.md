@@ -4,15 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Invoice4Me is an Android application written in Kotlin using Jetpack Compose.
-The project follows modern Android development practices with a clean architecture approach.
-The app is designed to manage invoices.
-The app ui is minimalistic and intuitive, focusing on ease of use for managing invoices.
-It includes features such as invoice creation, editing, and viewing.
-The application ui is build with Glassmorphism and Material3 design principles.
-It supports both light and dark themes, dynamic color, and edge-to-edge display.
-The application is built with a single Activity architecture, leveraging Jetpack Compose for UI development.
-It includes unit tests and instrumented tests to ensure code quality and functionality.
+- Invoice4Me is an Android application written in Kotlin using Jetpack Compose.
+- The project follows modern Android development practices with a clean architecture approach.
+- The app is designed to manage invoices.
+- The app ui is minimalistic and intuitive, focusing on ease of use for managing invoices.
+- It includes features such as invoice creation, editing, and viewing.
+- The application ui is build with Glassmorphism and Material3 design principles.
+- It supports both light and dark themes, dynamic color, and edge-to-edge display.
+- The application is built with a single Activity architecture, leveraging Jetpack Compose for UI development.
+- It includes unit tests and instrumented tests to ensure code quality and functionality.
 
 
 ## Key Technologies & Architecture
@@ -80,7 +80,9 @@ It includes unit tests and instrumented tests to ensure code quality and functio
 - Follows Material3 design system with dynamic color support (Android 12+)
 - Theme supports both light and dark modes with system detection
 - Uses Glassmorphism design principles for UI elements
-- Implements MVVM pattern for separation of concerns
+- Dashboard-centric UI with statistics cards and invoice list
+- Invoice data model includes id, client name, amount, date, and status enum
+- Status system: DRAFT, SENT, PAID, OVERDUE with color-coded indicators
 
 ## Development Environment
 
