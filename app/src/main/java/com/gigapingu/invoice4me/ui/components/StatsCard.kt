@@ -1,16 +1,20 @@
 package com.gigapingu.invoice4me.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.model.Invoice
 import com.gigapingu.invoice4me.model.InvoiceStatus
-import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
+import com.gigapingu.invoice4me.ui.theme.*
 
 @Composable
 fun StatsCards(invoices: List<Invoice>) {
@@ -61,29 +65,30 @@ fun StatCard(
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier.height(80.dp),
-        shape = RoundedCornerShape(12.dp),
+        modifier = modifier.height(100.dp),
+        shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
+            containerColor = GlassWhite15
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(12.dp),
-            verticalArrangement = Arrangement.Center
+                .padding(16.dp),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                style = MaterialTheme.typography.labelMedium,
+                color = TextTertiary,
+                fontWeight = FontWeight.Medium
             )
             Text(
                 text = value,
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurface
+                color = TextPrimary
             )
         }
     }
@@ -100,8 +105,21 @@ fun StatsCardsPreview() {
             Invoice("INV-004", "Design Co", 3200.00, "2024-01-12", InvoiceStatus.OVERDUE)
         )
         
-        Column(modifier = Modifier.padding(16.dp)) {
-            StatsCards(invoices = sampleInvoices)
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            GlassBlue1,
+                            GlassPink1
+                        )
+                    )
+                )
+        ) {
+            Column(modifier = Modifier.padding(16.dp)) {
+                StatsCards(invoices = sampleInvoices)
+            }
         }
     }
 }
