@@ -29,6 +29,20 @@ val GlassWhite10 = Color(0x1AFFFFFF)  // 10% opacity
 val GlassWhite15 = Color(0x26FFFFFF)  // 15% opacity
 val GlassWhite20 = Color(0x33FFFFFF)  // 20% opacity
 val GlassWhite25 = Color(0x40FFFFFF)  // 25% opacity
+val GlassWhite30 = Color(0x4DFFFFFF)  // 30% opacity
+val GlassWhite35 = Color(0x59FFFFFF)  // 35% opacity
+val GlassWhite40 = Color(0x66FFFFFF)  // 40% opacity
+val GlassWhite45 = Color(0x73FFFFFF)  // 45% opacity
+val GlassWhite50 = Color(0x80FFFFFF)  // 50% opacity
+val GlassWhite55 = Color(0x8CFFFFFF)  // 55% opacity
+val GlassWhite60 = Color(0x99FFFFFF)  // 60% opacity
+val GlassWhite65 = Color(0xA6FFFFFF)  // 65% opacity
+val GlassWhite70 = Color(0xB3FFFFFF)  // 70% opacity
+val GlassWhite75 = Color(0xBFFFFFFF)  // 75% opacity
+val GlassWhite80 = Color(0xCCFFFFFF)  // 80% opacity
+val GlassWhite85 = Color(0xD9FFFFFF)  // 85% opacity
+val GlassWhite90 = Color(0xE6FFFFFF)  // 90% opacity
+
 
 // Text colors for better contrast
 val TextPrimary = Color(0xFFFFFFFF)

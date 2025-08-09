@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.gigapingu.invoice4me.ui.components.Dashboard
-import com.gigapingu.invoice4me.ui.components.Main
+import com.gigapingu.invoice4me.ui.screens.DashboardScreen
+import com.gigapingu.invoice4me.ui.screens.MainScreen
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
 
 class MainActivity : ComponentActivity() {
@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         
         setContent {
-            Main()
+            MainScreen()
         }
     }
 }
@@ -25,6 +25,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainActivityPreview() {
     Invoice4MeTheme {
-        Dashboard()
+        DashboardScreen()
     }
 }

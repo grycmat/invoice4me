@@ -1,8 +1,10 @@
 package com.gigapingu.invoice4me.ui.components.invoice
 
-import java.text.SimpleDateFormat
-import java.util.*
+import com.gigapingu.invoice4me.utils.isValidDate
 
+/**
+ * Validates the invoice form state and returns a map of field errors
+ */
 fun validateForm(formState: InvoiceFormState): Map<String, String> {
     val errors = mutableMapOf<String, String>()
     
@@ -30,25 +32,4 @@ fun validateForm(formState: InvoiceFormState): Map<String, String> {
     }
     
     return errors
-}
-
-fun isValidDate(date: String): Boolean {
-    return try {
-        val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        format.isLenient = false
-        format.parse(date)
-        true
-    } catch (e: Exception) {
-        false
-    }
-}
-
-fun generateInvoiceId(): String {
-    val timestamp = System.currentTimeMillis()
-    return "INV-${timestamp.toString().takeLast(6)}"
-}
-
-fun getCurrentDate(): String {
-    val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    return format.format(Date())
 }
