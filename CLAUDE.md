@@ -69,7 +69,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **app/src/main/java/com/gigapingu/invoice4me/** - Main application code
   - `MainActivity.kt` - Entry point activity using Compose
-  - `ui/theme/` - Theme definitions (Theme.kt, Color.kt, Type.kt)
+  - `data/` - Sample data and test data classes
+  - `model/` - Core data models (Invoice, InvoiceItem, InvoiceStatus enum)
+  - `ui/` - UI layer organized by feature
+    - `components/` - Reusable UI components (cards, headers, forms)
+    - `navigation/` - Navigation setup and route definitions
+    - `screens/` - Main screen composables (Dashboard, MainScreen)
+    - `theme/` - Theme definitions (Theme.kt, Color.kt, Type.kt)
+  - `modifier/` - Custom modifiers (GlassBackground for glassmorphism effect)
+  - `utils/` - Utility functions for date, layout, and invoice operations
 - **app/src/test/** - Unit tests
 - **app/src/androidTest/** - Instrumented tests
 - **gradle/libs.versions.toml** - Version catalog for dependencies
@@ -83,12 +91,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Dashboard-centric UI with statistics cards and invoice list
 - Invoice data model includes id, client name, amount, date, and status enum
 - Status system: DRAFT, SENT, PAID, OVERDUE with color-coded indicators
+- Navigation uses Jetpack Navigation Compose with bottom navigation
+- Invoice forms support both invoice header details and line items
+- Comprehensive form validation for invoice creation/editing
+- Invoice model supports calculated totals from line items
 
 ## Development Environment
 
 - **Java Version**: 11 (both source and target compatibility)
 - **Kotlin Version**: 2.0.21
-- **Android Gradle Plugin**: 8.13.0-alpha03
+- **Android Gradle Plugin**: 8.13.0-alpha04
 - **Compose BOM**: 2024.09.00
 
 ## Testing Framework
