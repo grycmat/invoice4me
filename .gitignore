@@ -16,4 +16,4 @@ local.properties
 
 # Claude Code configuration files
 .claude/
-CLAUDE.md
+/CLAUDE.md

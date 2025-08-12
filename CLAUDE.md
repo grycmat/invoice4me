@@ -6,10 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - Invoice4Me is an Android application written in Kotlin using Jetpack Compose.
 - The project follows modern Android development practices with a clean architecture approach.
-- The app is designed to manage invoices.
-- The app ui is minimalistic and intuitive, focusing on ease of use for managing invoices.
-- It includes features such as invoice creation, editing, and viewing.
-- The application ui is build with Glassmorphism and Material3 design principles.
+- The app is designed to manage invoices with comprehensive features including creation, editing, viewing, and status tracking.
+- The app UI is minimalistic and intuitive, focusing on ease of use for managing invoices.
+- It includes features such as invoice creation, editing, viewing, line item management, and company data configuration.
+- The application UI is built with Glassmorphism and Material3 design principles.
 - It supports both light and dark themes, dynamic color, and edge-to-edge display.
 - The application is built with a single Activity architecture, leveraging Jetpack Compose for UI development.
 - It includes unit tests and instrumented tests to ensure code quality and functionality.
@@ -70,14 +70,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **app/src/main/java/com/gigapingu/invoice4me/** - Main application code
   - `MainActivity.kt` - Entry point activity using Compose
   - `data/` - Sample data and test data classes
-  - `model/` - Core data models (Invoice, InvoiceItem, InvoiceStatus enum)
+  - `model/` - Core data models (Invoice, InvoiceItem, InvoiceStatus enum, CompanyData, SettingsState)
   - `ui/` - UI layer organized by feature
     - `components/` - Reusable UI components (cards, headers, forms)
+      - `invoice/` - Invoice-specific components (forms, validation, item management)
     - `navigation/` - Navigation setup and route definitions
-    - `screens/` - Main screen composables (Dashboard, MainScreen)
+    - `screens/` - Main screen composables (Dashboard, Settings, MainScreen)
     - `theme/` - Theme definitions (Theme.kt, Color.kt, Type.kt)
   - `modifier/` - Custom modifiers (GlassBackground for glassmorphism effect)
-  - `utils/` - Utility functions for date, layout, and invoice operations
+  - `utils/` - Utility functions for date, layout, invoice operations, and invoice items
 - **app/src/test/** - Unit tests
 - **app/src/androidTest/** - Instrumented tests
 - **gradle/libs.versions.toml** - Version catalog for dependencies
@@ -89,12 +90,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Theme supports both light and dark modes with system detection
 - Uses Glassmorphism design principles for UI elements
 - Dashboard-centric UI with statistics cards and invoice list
-- Invoice data model includes id, client name, amount, date, and status enum
+- Invoice data model includes id, client name, amount, date, status enum, and line items
 - Status system: DRAFT, SENT, PAID, OVERDUE with color-coded indicators
 - Navigation uses Jetpack Navigation Compose with bottom navigation
-- Invoice forms support both invoice header details and line items
-- Comprehensive form validation for invoice creation/editing
-- Invoice model supports calculated totals from line items
+- Invoice forms support both invoice header details and line items with separate form screens
+- Comprehensive form validation for invoice creation/editing and line item management
+- Invoice model supports calculated totals from line items with automatic total calculation
+- Settings screen includes company data management and theme toggle functionality
+- Form state management with dedicated state classes for complex forms
 
 ## Development Environment
 
@@ -108,3 +111,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Unit Tests**: JUnit 4.13.2
 - **Android Tests**: AndroidX Test with Espresso
 - **Compose Tests**: UI testing with Compose test framework
+
+## Important Implementation Notes
+
+- Form validation is implemented with dedicated validation utilities for both invoices and invoice items
+- Invoice totals are automatically calculated from line items when items are present, otherwise use manual amount
+- Company data is managed through Settings screen with persistent state
+- Navigation follows bottom navigation pattern with dedicated routes for each major screen
+- Theme switching is handled through Settings with immediate UI updates
+- All forms include comprehensive error handling and validation feedback
