@@ -369,18 +369,27 @@ fun InvoiceFormScreenPreview() {
     }
 }
 
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.gigapingu.invoice4me.Invoice4MeApplication
+import com.gigapingu.invoice4me.ui.InvoiceViewModel
+import com.gigapingu.invoice4me.ui.InvoiceViewModelFactory
+
 @Composable
 fun InvoiceFormScreenWithState(
     initialItems: List<InvoiceItem> = emptyList(),
     initialInvoice: Invoice? = null,
     onNavigateBack: () -> Unit = {},
-    onSave: suspend (Invoice) -> Result<Unit> = { Result.success(Unit) },
     onNavigateToAddItem: () -> Unit = {},
     onNavigateToEditItem: (InvoiceItem) -> Unit = {},
     onItemsChanged: (List<InvoiceItem>) -> Unit = {},
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
+    val context = LocalContext.current
+    val invoiceViewModel: InvoiceViewModel = viewModel(
+        factory = InvoiceViewModelFactory((context.applicationContext as Invoice4MeApplication).repository)
+    )
+
     var formState by remember {
         mutableStateOf(
             if (initialInvoice != null) {
@@ -420,7 +429,7 @@ fun InvoiceFormScreenWithState(
 
     suspend fun handleSave() {
         keyboardController?.hide()
-        
+
         val validation = validateForm(formState)
         if (validation.isNotEmpty()) {
             formState = formState.copy(errors = validation)
@@ -428,14 +437,14 @@ fun InvoiceFormScreenWithState(
         }
 
         formState = formState.copy(isLoading = true, errors = emptyMap())
-        
+
         try {
             val finalAmount = if (formState.shouldUseCalculatedTotal) {
                 formState.calculatedTotal
             } else {
                 formState.amount.toDouble()
             }
-            
+
             val invoice = Invoice(
                 id = formState.id,
                 clientName = formState.clientName.trim(),
@@ -444,19 +453,11 @@ fun InvoiceFormScreenWithState(
                 status = formState.status,
                 items = formState.items
             )
-            
-            val result = onSave(invoice)
+
+            invoiceViewModel.insert(invoice)
             delay(500) // UX feedback delay
-            
-            result.fold(
-                onSuccess = { onNavigateBack() },
-                onFailure = { error ->
-                    formState = formState.copy(
-                        isLoading = false,
-                        errors = mapOf("general" to (error.message ?: "Failed to save invoice"))
-                    )
-                }
-            )
+            onNavigateBack()
+
         } catch (e: Exception) {
             formState = formState.copy(
                 isLoading = false,
