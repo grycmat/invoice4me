@@ -18,16 +18,31 @@ import com.gigapingu.invoice4me.utils.generateInvoiceItemId
     indices = [Index(value = ["invoiceId"])]
 )
 data class InvoiceItem(
-    @PrimaryKey(autoGenerate = true) val itemId: Long = 0,
-    val invoiceId: String,
-    @Ignore val tempId: String = generateInvoiceItemId(),
-    val name: String,
-    val legalBasis: String = "",
-    val quantity: Double,
-    val unitType: UnitType,
-    val pricePerUnit: Double,
-    val total: Double = quantity * pricePerUnit
-)
+    @PrimaryKey(autoGenerate = true) var itemId: Long = 0,
+    var invoiceId: String = "",
+    @Ignore var tempId: String = generateInvoiceItemId(),
+    var name: String = "",
+    var legalBasis: String = "",
+    var quantity: Double = 0.0,
+    var unitType: UnitType = UnitType.PIECES,
+    var pricePerUnit: Double = 0.0
+) {
+    // Computed property for total - not stored in database
+    val total: Double
+        get() = quantity * pricePerUnit
+    
+    // No-arg constructor for Room
+    constructor() : this(
+        itemId = 0,
+        invoiceId = "",
+        tempId = generateInvoiceItemId(),
+        name = "",
+        legalBasis = "",
+        quantity = 0.0,
+        unitType = UnitType.PIECES,
+        pricePerUnit = 0.0
+    )
+}
 
 enum class UnitType(val displayName: String, val symbol: String) {
     PIECES("Pieces", "pcs"),

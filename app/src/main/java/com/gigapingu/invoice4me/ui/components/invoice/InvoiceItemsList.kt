@@ -399,7 +399,8 @@ fun InvoiceItemsListPreview() {
             InvoiceItemsList(
                 items = listOf(
                     InvoiceItem(
-                        id = "1",
+                        tempId = "1",
+                        invoiceId = "PREVIEW-001",
                         name = "UI/UX Design Services",
                         legalBasis = "Professional Services",
                         quantity = 40.0,
@@ -407,7 +408,8 @@ fun InvoiceItemsListPreview() {
                         pricePerUnit = 75.0
                     ),
                     InvoiceItem(
-                        id = "2",
+                        tempId = "2",
+                        invoiceId = "PREVIEW-001",
                         name = "Web Development",
                         legalBasis = "",
                         quantity = 1.0,
@@ -415,7 +417,8 @@ fun InvoiceItemsListPreview() {
                         pricePerUnit = 2500.0
                     ),
                     InvoiceItem(
-                        id = "3",
+                        tempId = "3",
+                        invoiceId = "PREVIEW-001",
                         name = "Marketing Materials",
                         legalBasis = "Print Services",
                         quantity = 500.0,

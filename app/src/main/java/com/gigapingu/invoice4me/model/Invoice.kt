@@ -6,19 +6,30 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "invoices")
 data class Invoice(
-    @PrimaryKey val id: String,
-    val clientName: String,
-    val amount: Double,
-    val date: String,
-    val status: InvoiceStatus,
+    @PrimaryKey var id: String = "",
+    var clientName: String = "",
+    var amount: Double = 0.0,
+    var date: String = "",
+    var status: InvoiceStatus = InvoiceStatus.DRAFT,
     @Ignore
-    val items: List<InvoiceItem> = emptyList()
+    var items: List<InvoiceItem> = emptyList()
 ) {
+    // Computed properties
     val calculatedTotal: Double
         get() = items.sumOf { it.total }
 
     val shouldUseCalculatedTotal: Boolean
         get() = items.isNotEmpty()
+    
+    // No-arg constructor for Room
+    constructor() : this(
+        id = "",
+        clientName = "",
+        amount = 0.0,
+        date = "",
+        status = InvoiceStatus.DRAFT,
+        items = emptyList()
+    )
 }
 
 enum class InvoiceStatus {

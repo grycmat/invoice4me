@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
@@ -33,6 +34,11 @@ import com.gigapingu.invoice4me.utils.generateInvoiceId
 import com.gigapingu.invoice4me.utils.getCurrentDate
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.gigapingu.invoice4me.Invoice4MeApplication
+import com.gigapingu.invoice4me.ui.InvoiceViewModel
+import com.gigapingu.invoice4me.ui.InvoiceViewModelFactory
+
 
 @Composable
 fun InvoiceFormScreen(
@@ -279,7 +285,7 @@ private fun InvoiceFormCard(
                 onDeleteItem = { itemToDelete ->
                     onStateChange(
                         formState.copy(
-                            items = formState.items.filter { it.id != itemToDelete.id }
+                            items = formState.items.filter { it.itemId != itemToDelete.itemId }
                         )
                     )
                 }
@@ -360,29 +366,15 @@ private fun InvoiceFormCard(
     }
 }
 
-
-@Preview(showBackground = true)
-@Composable
-fun InvoiceFormScreenPreview() {
-    Invoice4MeTheme {
-        InvoiceFormScreen()
-    }
-}
-
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.gigapingu.invoice4me.Invoice4MeApplication
-import com.gigapingu.invoice4me.ui.InvoiceViewModel
-import com.gigapingu.invoice4me.ui.InvoiceViewModelFactory
-
 @Composable
 fun InvoiceFormScreenWithState(
+    modifier: Modifier = Modifier,
     initialItems: List<InvoiceItem> = emptyList(),
     initialInvoice: Invoice? = null,
     onNavigateBack: () -> Unit = {},
     onNavigateToAddItem: () -> Unit = {},
     onNavigateToEditItem: (InvoiceItem) -> Unit = {},
     onItemsChanged: (List<InvoiceItem>) -> Unit = {},
-    modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
     val context = LocalContext.current
