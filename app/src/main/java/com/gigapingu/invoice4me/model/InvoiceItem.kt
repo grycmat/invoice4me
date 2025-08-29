@@ -1,7 +1,23 @@
 package com.gigapingu.invoice4me.model
 
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
+import androidx.room.PrimaryKey
+
+@Entity(
+    tableName = "invoice_items",
+    foreignKeys = [ForeignKey(
+        entity = Invoice::class,
+        parentColumns = ["id"],
+        childColumns = ["invoiceId"],
+        onDelete = ForeignKey.CASCADE
+    )],
+    indices = [Index(value = ["invoiceId"])]
+)
 data class InvoiceItem(
-    val id: String = "",
+    @PrimaryKey(autoGenerate = true) val itemId: Long = 0,
+    val invoiceId: String,
     val name: String,
     val legalBasis: String = "",
     val quantity: Double,
