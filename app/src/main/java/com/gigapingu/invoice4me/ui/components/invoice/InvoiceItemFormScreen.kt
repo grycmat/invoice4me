@@ -24,7 +24,6 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.model.*
@@ -33,13 +32,14 @@ import com.gigapingu.invoice4me.ui.theme.*
 import com.gigapingu.invoice4me.utils.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 @Composable
 fun InvoiceItemFormScreen(
+    modifier: Modifier = Modifier,
     initialItem: InvoiceItem? = null,
     onNavigateBack: () -> Unit = {},
     onSave: suspend (InvoiceItem) -> Result<Unit> = { Result.success(Unit) },
-    modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
     var formState by remember {
@@ -51,7 +51,7 @@ fun InvoiceItemFormScreen(
                     legalBasis = initialItem.legalBasis,
                     quantity = formatQuantity(initialItem.quantity),
                     unitType = initialItem.unitType,
-                    pricePerUnit = String.format("%.2f", initialItem.pricePerUnit)
+                    pricePerUnit = String.format(Locale.ROOT, "%.2f", initialItem.pricePerUnit)
                 )
             } else {
                 InvoiceItemFormState(

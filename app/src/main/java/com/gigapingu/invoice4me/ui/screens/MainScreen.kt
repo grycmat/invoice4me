@@ -17,7 +17,6 @@ fun MainScreen() {
     val navController = rememberNavController()
 
 
-    var tempInvoiceItems by remember { mutableStateOf<List<InvoiceItem>>(emptyList()) }
     var editingItem by remember { mutableStateOf<InvoiceItem?>(null) }
 
     Invoice4MeTheme {
@@ -26,7 +25,7 @@ fun MainScreen() {
             containerColor = Color.Transparent,
             bottomBar = { AppNavigation(navController) }
         ) { innerPadding ->
-            NavigationHost(navController, innerPadding, tempInvoiceItems, editingItem)
+            NavigationHost(navController, innerPadding, editingItem)
         }
     }
 }

@@ -13,6 +13,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.gigapingu.invoice4me.ui.navigation.routes.Routes
 import com.gigapingu.invoice4me.ui.theme.GlassBlue1
+import com.gigapingu.invoice4me.ui.theme.GlassWhite50
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
 import com.gigapingu.invoice4me.ui.theme.GlassWhite60
 
@@ -34,13 +35,16 @@ fun AppNavigation(navController: NavController) {
     val currentRoute = navBackStackEntry?.destination?.route
 
     NavigationBar(
-        containerColor = GlassWhite60
+        containerColor = GlassWhite50
     ) {
         navigationItems.forEach { item ->
             NavigationBarItem(
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = GlassBlue1,
                     selectedTextColor = GlassBlue1,
+                    unselectedIconColor = GlassBlue1,
+                    unselectedTextColor = GlassBlue1,
+                    indicatorColor = GlassWhite60
                 ),
                 selected = currentRoute == item.route,
                 onClick = {
