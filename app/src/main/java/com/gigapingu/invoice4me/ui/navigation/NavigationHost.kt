@@ -50,7 +50,7 @@ fun NavigationHost(
                 },
                 onNavigateToEditItem = { item ->
                     editingItem1 = item
-                    navController.navigate(Routes.EditInvoiceItem.createRoute(item.id))
+                    navController.navigate(Routes.EditInvoiceItem.createRoute(item.tempId))
                 },
                 onItemsChanged = { items ->
                     tempInvoiceItems1 = items
@@ -75,7 +75,7 @@ fun NavigationHost(
             )
         ) { backStackEntry ->
             val itemId = backStackEntry.arguments?.getString("itemId")
-            val itemToEdit = tempInvoiceItems1.find { it.id == itemId } ?: editingItem1
+            val itemToEdit = tempInvoiceItems1.find { it.tempId == itemId } ?: editingItem1
 
             InvoiceItemFormScreen(
                 initialItem = itemToEdit,
@@ -84,7 +84,7 @@ fun NavigationHost(
                 onNavigateBack = { navController.popBackStack() },
                 onSave = { updatedItem ->
                     tempInvoiceItems1 = tempInvoiceItems1.map { item ->
-                        if (item.id == updatedItem.id) updatedItem else item
+                        if (item.tempId == updatedItem.tempId) updatedItem else item
                     }
                     Result.success(Unit)
                 }

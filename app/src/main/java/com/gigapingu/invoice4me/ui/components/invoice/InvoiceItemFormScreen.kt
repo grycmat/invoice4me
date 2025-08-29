@@ -46,7 +46,7 @@ fun InvoiceItemFormScreen(
         mutableStateOf(
             if (initialItem != null) {
                 InvoiceItemFormState(
-                    id = initialItem.id,
+                    tempId = initialItem.tempId,
                     name = initialItem.name,
                     legalBasis = initialItem.legalBasis,
                     quantity = formatQuantity(initialItem.quantity),
@@ -55,7 +55,7 @@ fun InvoiceItemFormScreen(
                 )
             } else {
                 InvoiceItemFormState(
-                    id = generateInvoiceItemId()
+                    tempId = generateInvoiceItemId()
                 )
             }
         )
@@ -78,7 +78,8 @@ fun InvoiceItemFormScreen(
         
         try {
             val item = InvoiceItem(
-                id = formState.id,
+                invoiceId = "", // Not associated with an invoice yet
+                tempId = formState.tempId,
                 name = formState.name.trim(),
                 legalBasis = formState.legalBasis.trim(),
                 quantity = formState.quantity.toDouble(),
@@ -486,7 +487,7 @@ fun InvoiceItemFormScreenPreview() {
 fun InvoiceItemFormScreenEditPreview() {
     Invoice4MeTheme {
         val sampleItem = InvoiceItem(
-            id = "ITEM-001",
+            invoiceId = "INV-PREVIEW-001",
             name = "Design Services",
             legalBasis = "Professional Services",
             quantity = 10.0,

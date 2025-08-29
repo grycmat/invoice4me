@@ -2,8 +2,10 @@ package com.gigapingu.invoice4me.model
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Ignore
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.gigapingu.invoice4me.utils.generateInvoiceItemId
 
 @Entity(
     tableName = "invoice_items",
@@ -18,6 +20,7 @@ import androidx.room.PrimaryKey
 data class InvoiceItem(
     @PrimaryKey(autoGenerate = true) val itemId: Long = 0,
     val invoiceId: String,
+    @Ignore val tempId: String = generateInvoiceItemId(),
     val name: String,
     val legalBasis: String = "",
     val quantity: Double,
@@ -47,7 +50,7 @@ enum class UnitType(val displayName: String, val symbol: String) {
 }
 
 data class InvoiceItemFormState(
-    val id: String = "",
+    val tempId: String = "",
     val name: String = "",
     val legalBasis: String = "",
     val quantity: String = "",
