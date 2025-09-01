@@ -2,6 +2,7 @@ package com.gigapingu.invoice4me.ui.components.invoice
 
 import android.graphics.pdf.PdfDocument
 import android.net.Uri
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
@@ -49,6 +50,23 @@ fun InvoiceFormCard(
     onNavigateToEditItem: (InvoiceItem) -> Unit,
     focusManager: FocusManager
 ) {
+    val context = LocalContext.current
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("application/pdf"),
+        onResult = { uri: Uri? ->
+            uri?.let {
+                try {
+                    val document = createPdfFromComposable(context) { TempInvoicePdf() }
+                    context.contentResolver.openOutputStream(it)?.use { outputStream ->
+                        document.writeTo(outputStream)
+                    }
+                    document.close()
+                } catch (e: IOException) {
+                    Log.e("InvoiceFormCard", "Error generating PDF", e)
+                }
+            }
+        }
+    )
 
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -192,7 +210,7 @@ fun InvoiceFormCard(
 
             Button(
                 onClick = {
-                    TODO("Implement test PDF generation")
+                    launcher.launch("invoice.pdf")
                 },
             ) {
                 Text("Test Generation")
