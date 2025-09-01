@@ -1,5 +1,6 @@
 package com.gigapingu.invoice4me.ui.components.invoice
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,10 +28,10 @@ import com.gigapingu.invoice4me.ui.theme.TextTertiary
 
 @Composable
 fun InvoiceActionButtons(
+    modifier: Modifier = Modifier,
     onCancel: () -> Unit = {},
     onSave: () -> Unit = {},
     isLoading: Boolean = false,
-    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -44,7 +45,7 @@ fun InvoiceActionButtons(
             colors = ButtonDefaults.outlinedButtonColors(
                 contentColor = TextPrimary
             ),
-            border = androidx.compose.foundation.BorderStroke(
+            border = BorderStroke(
                 1.dp,
                 TextTertiary
             )

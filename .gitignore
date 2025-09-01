@@ -16,5 +16,7 @@ local.properties
 
 # Claude Code configuration files
 .claude/
-/CLAUDE.md
+CLAUDE.md
+GEMINI.md
+WARP.md
 app/src/main/java/com/gigapingu/invoice4me/TempInvoicePdf.kt

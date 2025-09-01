@@ -1,5 +1,9 @@
 package com.gigapingu.invoice4me.ui.components.invoice
 
+import android.graphics.pdf.PdfDocument
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,6 +15,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -19,16 +24,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.focus.FocusManager
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.gigapingu.invoice4me.TempInvoicePdf
 import com.gigapingu.invoice4me.model.InvoiceItem
 import com.gigapingu.invoice4me.ui.components.ErrorMessage
 import com.gigapingu.invoice4me.ui.theme.GlassWhite20
 import com.gigapingu.invoice4me.ui.theme.TextSecondary
 import com.gigapingu.invoice4me.ui.theme.TextTertiary
+import com.gigapingu.invoice4me.utils.createPdfFromComposable
+import java.io.IOException
 
 @Composable
 fun InvoiceFormCard(
@@ -38,8 +47,9 @@ fun InvoiceFormCard(
     onCancel: () -> Unit,
     onNavigateToAddItem: () -> Unit,
     onNavigateToEditItem: (InvoiceItem) -> Unit,
-    focusManager: androidx.compose.ui.focus.FocusManager
+    focusManager: FocusManager
 ) {
+
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
@@ -71,7 +81,12 @@ fun InvoiceFormCard(
                 label = "Client Name",
                 value = formState.clientName,
                 onValueChange = {
-                    onStateChange(formState.copy(clientName = it, errors = formState.errors - "clientName"))
+                    onStateChange(
+                        formState.copy(
+                            clientName = it,
+                            errors = formState.errors - "clientName"
+                        )
+                    )
                 },
                 placeholder = "Enter client name",
                 isError = formState.errors.containsKey("clientName"),
@@ -90,7 +105,12 @@ fun InvoiceFormCard(
                 value = formState.displayAmount,
                 onValueChange = {
                     if (!formState.shouldUseCalculatedTotal && (it.isEmpty() || it.matches(Regex("^\\d*\\.?\\d*$")))) {
-                        onStateChange(formState.copy(amount = it, errors = formState.errors - "amount"))
+                        onStateChange(
+                            formState.copy(
+                                amount = it,
+                                errors = formState.errors - "amount"
+                            )
+                        )
                     }
                 },
                 enabled = !formState.shouldUseCalculatedTotal,
@@ -170,6 +190,13 @@ fun InvoiceFormCard(
                 }
             )
 
+            Button(
+                onClick = {
+                    TODO("Implement test PDF generation")
+                },
+            ) {
+                Text("Test Generation")
+            }
             Spacer(modifier = Modifier.height(8.dp))
 
             InvoiceActionButtons(
@@ -177,6 +204,7 @@ fun InvoiceFormCard(
                 onSave = onSave,
                 isLoading = formState.isLoading
             )
+
         }
     }
 }
