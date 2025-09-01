@@ -11,8 +11,10 @@ composeBom = "2024.09.00"
 navigationCompose = "2.9.3"
 room = "2.7.2"
 ksp = "2.0.21-1.0.25"
+uiViewbinding = "1.6.0"
 
 [libraries]
+androidx-compose-ui-viewbinding = { group = "androidx.compose.ui", name = "ui-viewbinding", version.ref = "uiViewbinding" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
