@@ -1,9 +1,5 @@
 package com.gigapingu.invoice4me.ui.components.invoice
 
-import android.graphics.pdf.PdfDocument
-import android.net.Uri
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -22,6 +18,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
@@ -30,15 +27,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.gigapingu.invoice4me.TempInvoicePdf
 import com.gigapingu.invoice4me.model.InvoiceItem
 import com.gigapingu.invoice4me.ui.components.ErrorMessage
 import com.gigapingu.invoice4me.ui.theme.GlassWhite20
 import com.gigapingu.invoice4me.ui.theme.TextSecondary
 import com.gigapingu.invoice4me.ui.theme.TextTertiary
-import com.gigapingu.invoice4me.utils.createPdfFromComposable
-import java.io.IOException
+import dev.shreyaspatil.capturable.capturable
+import dev.shreyaspatil.capturable.controller.rememberCaptureController
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun InvoiceFormCard(
     formState: InvoiceFormState,
@@ -49,6 +49,11 @@ fun InvoiceFormCard(
     onNavigateToEditItem: (InvoiceItem) -> Unit,
     focusManager: FocusManager
 ) {
+
+    val captureController = rememberCaptureController()
+    val context = LocalContext.current
+
+
 
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -190,12 +195,17 @@ fun InvoiceFormCard(
                 }
             )
 
+            Column(Modifier.capturable(captureController)) {  }
+
             Button(
                 onClick = {
-                    TODO("Implement test PDF generation")
+                    val timestamp =
+                        SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+//                    val filename = "invoice_${formState.id}_$timestamp.pdf"
+//                    pdfLauncher.launch(filename)
                 },
             ) {
-                Text("Test Generation")
+                Text("Generate PDF")
             }
             Spacer(modifier = Modifier.height(8.dp))
 

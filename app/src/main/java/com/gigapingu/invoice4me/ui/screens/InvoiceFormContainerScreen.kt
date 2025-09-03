@@ -16,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
@@ -39,6 +40,7 @@ import com.gigapingu.invoice4me.utils.getCurrentDate
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun InvoiceFormContainerScreen(
     modifier: Modifier = Modifier,
@@ -48,6 +50,7 @@ fun InvoiceFormContainerScreen(
     onNavigateToAddItem: () -> Unit = {},
     onNavigateToEditItem: (InvoiceItem) -> Unit = {},
     onItemsChanged: (List<InvoiceItem>) -> Unit = {},
+    onOpenPreview: () -> Unit = {},
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
     val context = LocalContext.current

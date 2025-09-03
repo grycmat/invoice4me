@@ -9,6 +9,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.gigapingu.invoice4me.TempInvoicePdf
 import com.gigapingu.invoice4me.model.InvoiceItem
 import com.gigapingu.invoice4me.ui.components.invoice.InvoiceItemFormScreen
 import com.gigapingu.invoice4me.ui.navigation.routes.Routes
@@ -46,7 +47,7 @@ fun NavigationHost(
                     navController.navigate(Routes.EditInvoiceItem.createRoute(item.tempId))
                 },
                 onItemsChanged = { items ->
-                }
+                },
             )
         }
         composable(Routes.AddInvoiceItem.route) {
@@ -82,6 +83,9 @@ fun NavigationHost(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = innerPadding
             )
+        }
+        composable("preview") {
+            TempInvoicePdf()
         }
     }
 }
