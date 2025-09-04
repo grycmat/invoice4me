@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.gigapingu.invoice4me.model.InvoiceItem
+import com.gigapingu.invoice4me.navigation.LocalNavController
 import com.gigapingu.invoice4me.ui.navigation.AppNavigation
 import com.gigapingu.invoice4me.ui.navigation.NavigationHost
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
@@ -19,13 +20,15 @@ fun MainScreen() {
 
     var editingItem by remember { mutableStateOf<InvoiceItem?>(null) }
 
-    Invoice4MeTheme {
-        Scaffold(
-            modifier = Modifier.fillMaxSize(),
-            containerColor = Color.Transparent,
-            bottomBar = { AppNavigation(navController) }
-        ) { innerPadding ->
-            NavigationHost(navController, innerPadding, editingItem)
+    CompositionLocalProvider(LocalNavController provides navController)  {
+        Invoice4MeTheme {
+            Scaffold(
+                modifier = Modifier.fillMaxSize(),
+                containerColor = Color.Transparent,
+                bottomBar = { AppNavigation(navController) }
+            ) { innerPadding ->
+                NavigationHost(navController, innerPadding, editingItem)
+            }
         }
     }
 }

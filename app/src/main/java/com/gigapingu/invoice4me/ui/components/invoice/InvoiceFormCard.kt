@@ -28,6 +28,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.model.InvoiceItem
+import com.gigapingu.invoice4me.navigation.LocalNavController
 import com.gigapingu.invoice4me.ui.components.ErrorMessage
 import com.gigapingu.invoice4me.ui.theme.GlassWhite20
 import com.gigapingu.invoice4me.ui.theme.TextSecondary
@@ -52,6 +53,7 @@ fun InvoiceFormCard(
 
     val captureController = rememberCaptureController()
     val context = LocalContext.current
+    val navController = LocalNavController.current
 
 
 
@@ -199,8 +201,9 @@ fun InvoiceFormCard(
 
             Button(
                 onClick = {
-                    val timestamp =
-                        SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+                    navController.navigate("preview")
+//                    val timestamp =
+//                        SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
 //                    val filename = "invoice_${formState.id}_$timestamp.pdf"
 //                    pdfLauncher.launch(filename)
                 },
