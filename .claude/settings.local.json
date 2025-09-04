@@ -4,7 +4,10 @@
       "Read(*)",
       "Write(*)",
       "Edit(*)",
-      "Search(*)"
+      "Search(*)",
+      "Bash(./gradlew:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

@@ -9,6 +9,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.gigapingu.invoice4me.PdfPrinter
 import com.gigapingu.invoice4me.TempInvoicePdf
 import com.gigapingu.invoice4me.model.InvoiceItem
 import com.gigapingu.invoice4me.ui.components.invoice.InvoiceItemFormScreen
@@ -85,7 +86,7 @@ fun NavigationHost(
             )
         }
         composable("preview") {
-            TempInvoicePdf()
+            PdfPrinter()
         }
     }
 }

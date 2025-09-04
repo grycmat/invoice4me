@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="40dp"
+        tools:context=".InvoicePdfXmlActivity">
+
+        <!-- Invoice Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_issue_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Wystawiono dnia DD-MM-YYYY, [City]"
+                android:textColor="@android:color/black"
+                android:textSize="11sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp" />
+
+            <TextView
+                android:id="@+id/tv_invoice_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Faktura nr [Invoice Number]"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_sale_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="Data sprzedaży: DD-MM-YYYY"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_payment_method"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="Sposób zapłaty: Przelew"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_payment_due"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Termin płatności: DD-MM-YYYY"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="24dp" />
+
+        <!-- Invoice Parties -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <!-- Seller -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sprzedawca:"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <TextView
+                    android:id="@+id/tv_seller_name1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.33"
+                    android:text="[Company Name]"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/tv_seller_name2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.33"
+                    android:text="[Business Type]"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/tv_seller_name3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.33"
+                    android:text="[Owner Name]"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/tv_seller_address1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.33"
+                    android:text="[Street Address]"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/tv_seller_address2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.33"
+                    android:text="[Postal Code] [City]"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/tv_seller_nip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.33"
+                    android:text="NIP [Tax ID]"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="32dp"
+                android:layout_height="match_parent" />
+
+            <!-- Buyer -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nabywca:"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp" />
+
+                <TextView
+                    android:id="@+id/tv_buyer_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.33"
+                    android:text="[Buyer Company Name]"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/tv_buyer_address1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.33"
+                    android:text="[Buyer Street Address]"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/tv_buyer_address2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.33"
+                    android:text="[Postal Code] [City]"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/tv_buyer_nip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.33"
+                    android:text="NIP [Buyer Tax ID]"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="24dp" />
+
+        <!-- Invoice Items Table -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="POZYCJE FAKTURY"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/table_border"
+                android:orientation="vertical">
+
+                <!-- Table Header -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#F8F8F8"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="7.1">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:paddingVertical="6dp"
+                        android:text="Lp."
+                        android:textColor="@android:color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.2"
+                        android:gravity="center"
+                        android:paddingVertical="6dp"
+                        android:text="Nazwa towaru lub usługi"
+                        android:textColor="@android:color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.3"
+                        android:gravity="center"
+                        android:paddingVertical="6dp"
+                        android:text="Podstawa prawna"
+                        android:textColor="@android:color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:gravity="center"
+                        android:paddingVertical="6dp"
+                        android:text="Ilość"
+                        android:textColor="@android:color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:gravity="center"
+                        android:paddingVertical="6dp"
+                        android:text="Jedn."
+                        android:textColor="@android:color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:gravity="center"
+                        android:paddingVertical="6dp"
+                        android:text="Cena jedn. brutto"
+                        android:textColor="@android:color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:gravity="center"
+                        android:paddingVertical="6dp"
+                        android:text="Wartość brutto"
+                        android:textColor="@android:color/black"
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!-- Divider -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black" />
+
+                <!-- Table Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="7.1">
+
+                    <TextView
+                        android:id="@+id/tv_item_number"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:paddingVertical="8dp"
+                        android:text="1."
+                        android:textColor="@android:color/black"
+                        android:textSize="9sp" />
+
+                    <TextView
+                        android:id="@+id/tv_item_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.2"
+                        android:gravity="center"
+                        android:paddingVertical="8dp"
+                        android:text="Usługa stomatologiczna"
+                        android:textColor="@android:color/black"
+                        android:textSize="9sp" />
+
+                    <TextView
+                        android:id="@+id/tv_legal_basis"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.3"
+                        android:gravity="center"
+                        android:paddingVertical="8dp"
+                        android:text="Art. 43 ust. 1 pkt 18a"
+                        android:textColor="@android:color/black"
+                        android:textSize="9sp" />
+
+                    <TextView
+                        android:id="@+id/tv_quantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:gravity="center"
+                        android:paddingVertical="8dp"
+                        android:text="1"
+                        android:textColor="@android:color/black"
+                        android:textSize="9sp" />
+
+                    <TextView
+                        android:id="@+id/tv_unit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:gravity="center"
+                        android:paddingVertical="8dp"
+                        android:text="usł."
+                        android:textColor="@android:color/black"
+                        android:textSize="9sp" />
+
+                    <TextView
+                        android:id="@+id/tv_unit_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:gravity="end"
+                        android:paddingVertical="8dp"
+                        android:text="[Unit Price]"
+                        android:textColor="@android:color/black"
+                        android:textSize="9sp" />
+
+                    <TextView
+                        android:id="@+id/tv_total_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:gravity="end"
+                        android:paddingVertical="8dp"
+                        android:text="[Total Price]"
+                        android:textColor="@android:color/black"
+                        android:textSize="9sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <!-- Invoice Summary -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="PODSUMOWANIE"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/table_border"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Wartość brutto"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Razem:"
+                        android:textColor="@android:color/black"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_total_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="[Total Amount]"
+                        android:textColor="@android:color/black"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Zapłacono:"
+                        android:textColor="@android:color/black"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/tv_paid_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0,00"
+                        android:textColor="@android:color/black"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Pozostało do zapłaty:"
+                        android:textColor="@android:color/black"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_remaining_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="[Remaining Amount]"
+                        android:textColor="@android:color/black"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_amount_in_words"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Słownie: [Amount in words] PLN"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <!-- Invoice Footer -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_bank_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="Konto bankowe: [Bank Name] [Account Number]"
+                android:textColor="@android:color/black"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="Uwagi:"
+                android:textColor="@android:color/black"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Faktura bez podpisu odbiorcy"
+                    android:textColor="@android:color/black"
+                    android:textSize="8sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Osoba upoważniona do wystawienia faktury"
+                    android:textColor="@android:color/black"
+                    android:textSize="8sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

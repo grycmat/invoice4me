@@ -16,3 +16,5 @@ local.properties
 
 
 app/src/main/java/com/gigapingu/invoice4me/TempInvoicePdf.kt
+app/src/main/java/com/gigapingu/invoice4me/TempInvoicePdf2.kt
+app/src/main/java/com/gigapingu/invoice4me/TempInvoicePdf3.kt
