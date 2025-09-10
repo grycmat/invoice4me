@@ -7,12 +7,14 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.gigapingu.invoice4me.model.Invoice
 import com.gigapingu.invoice4me.model.InvoiceItem
+import com.gigapingu.invoice4me.model.CompanyData
 
-@Database(entities = [Invoice::class, InvoiceItem::class], version = 1, exportSchema = false)
+@Database(entities = [Invoice::class, InvoiceItem::class, CompanyData::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun invoiceDao(): InvoiceDao
+    abstract fun companyDataDao(): CompanyDataDao
 
     companion object {
         @Volatile
@@ -24,7 +26,8 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "invoice_database"
-                ).build()
+                ).fallbackToDestructiveMigration()
+                .build()
                 INSTANCE = instance
                 instance
             }
