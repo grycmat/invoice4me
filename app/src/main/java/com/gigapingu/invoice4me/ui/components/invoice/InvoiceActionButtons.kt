@@ -21,10 +21,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.gigapingu.invoice4me.ui.theme.GlassWhite25
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
-import com.gigapingu.invoice4me.ui.theme.TextPrimary
-import com.gigapingu.invoice4me.ui.theme.TextTertiary
+import androidx.compose.material3.MaterialTheme
 
 @Composable
 fun InvoiceActionButtons(
@@ -32,6 +30,7 @@ fun InvoiceActionButtons(
     onCancel: () -> Unit = {},
     onSave: () -> Unit = {},
     isLoading: Boolean = false,
+    saveButtonText: String = "Save"
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -43,11 +42,11 @@ fun InvoiceActionButtons(
             enabled = !isLoading,
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.outlinedButtonColors(
-                contentColor = TextPrimary
+                contentColor = MaterialTheme.colorScheme.onSurface
             ),
             border = BorderStroke(
                 1.dp,
-                TextTertiary
+                MaterialTheme.colorScheme.outline
             )
         ) {
             Icon(
@@ -65,15 +64,15 @@ fun InvoiceActionButtons(
             enabled = !isLoading,
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = GlassWhite25,
-                contentColor = TextPrimary
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary
             )
         ) {
             if (isLoading) {
                 CircularProgressIndicator(
                     modifier = Modifier.size(18.dp),
                     strokeWidth = 2.dp,
-                    color = TextPrimary
+                    color = MaterialTheme.colorScheme.onPrimary
                 )
             } else {
                 Icon(
@@ -83,7 +82,7 @@ fun InvoiceActionButtons(
                 )
             }
             Spacer(modifier = Modifier.width(8.dp))
-            Text(if (isLoading) "Saving..." else "Save")
+            Text(if (isLoading) "Saving..." else saveButtonText)
         }
     }
 }

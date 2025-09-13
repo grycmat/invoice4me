@@ -27,17 +27,6 @@ import com.gigapingu.invoice4me.ui.theme.GlassBlue1
 import com.gigapingu.invoice4me.ui.theme.GlassPink1
 import com.gigapingu.invoice4me.ui.theme.GlassWhite15
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
-import com.gigapingu.invoice4me.ui.theme.StatusDraftBg
-import com.gigapingu.invoice4me.ui.theme.StatusDraftGray
-import com.gigapingu.invoice4me.ui.theme.StatusOverdueBg
-import com.gigapingu.invoice4me.ui.theme.StatusOverdueRed
-import com.gigapingu.invoice4me.ui.theme.StatusPaidBg
-import com.gigapingu.invoice4me.ui.theme.StatusPaidGreen
-import com.gigapingu.invoice4me.ui.theme.StatusSentBg
-import com.gigapingu.invoice4me.ui.theme.StatusSentBlue
-import com.gigapingu.invoice4me.ui.theme.TextPrimary
-import com.gigapingu.invoice4me.ui.theme.TextSecondary
-import com.gigapingu.invoice4me.ui.theme.TextTertiary
 
 @Composable
 fun InvoiceCard(invoice: Invoice) {
@@ -64,17 +53,17 @@ fun InvoiceCard(invoice: Invoice) {
                     text = invoice.id,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
-                    color = TextPrimary
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
                     text = invoice.clientName,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = TextSecondary
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 Text(
                     text = invoice.date,
                     style = MaterialTheme.typography.bodySmall,
-                    color = TextTertiary
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
             
@@ -86,7 +75,7 @@ fun InvoiceCard(invoice: Invoice) {
                     text = "$${String.format("%.2f", invoice.amount)}",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
-                    color = TextPrimary
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 StatusChip(status = invoice.status)
             }
@@ -98,23 +87,23 @@ fun InvoiceCard(invoice: Invoice) {
 fun StatusChip(status: InvoiceStatus) {
     val (backgroundColor, textColor, text) = when (status) {
         InvoiceStatus.PAID -> Triple(
-            StatusPaidBg,
-            StatusPaidGreen,
+            MaterialTheme.colorScheme.secondaryContainer,
+            MaterialTheme.colorScheme.onSecondaryContainer,
             "Paid"
         )
         InvoiceStatus.SENT -> Triple(
-            StatusSentBg,
-            StatusSentBlue,
+            MaterialTheme.colorScheme.primaryContainer,
+            MaterialTheme.colorScheme.primary,
             "Sent"
         )
         InvoiceStatus.DRAFT -> Triple(
-            StatusDraftBg,
-            StatusDraftGray,
+            MaterialTheme.colorScheme.surfaceVariant,
+            MaterialTheme.colorScheme.onSurfaceVariant,
             "Draft"
         )
         InvoiceStatus.OVERDUE -> Triple(
-            StatusOverdueBg,
-            StatusOverdueRed,
+            MaterialTheme.colorScheme.errorContainer,
+            MaterialTheme.colorScheme.error,
             "Overdue"
         )
     }

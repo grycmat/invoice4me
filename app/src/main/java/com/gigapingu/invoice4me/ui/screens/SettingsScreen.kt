@@ -45,12 +45,7 @@ import com.gigapingu.invoice4me.ui.settings.SettingsViewModelFactory
 import com.gigapingu.invoice4me.ui.theme.GlassBlue1
 import com.gigapingu.invoice4me.ui.theme.GlassPink1
 import com.gigapingu.invoice4me.ui.theme.GlassWhite15
-import com.gigapingu.invoice4me.ui.theme.GlassWhite30
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
-import com.gigapingu.invoice4me.ui.theme.Purple40
-import com.gigapingu.invoice4me.ui.theme.TextPrimary
-import com.gigapingu.invoice4me.ui.theme.TextSecondary
-import com.gigapingu.invoice4me.ui.theme.TextTertiary
 import com.gigapingu.invoice4me.utils.calculatePadding
 
 @Composable
@@ -118,7 +113,7 @@ private fun SettingsHeader() {
         text = "Settings",
         style = MaterialTheme.typography.headlineMedium,
         fontWeight = FontWeight.Bold,
-        color = TextPrimary,
+        color = MaterialTheme.colorScheme.onSurface,
         modifier = Modifier.padding(vertical = 12.dp)
     )
 }
@@ -132,7 +127,7 @@ private fun ThemeToggleCard(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = GlassWhite15
+            containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.1f)
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
@@ -145,7 +140,7 @@ private fun ThemeToggleCard(
                 text = "Appearance",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold,
-                color = TextPrimary
+                color = MaterialTheme.colorScheme.onSurface
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -159,12 +154,12 @@ private fun ThemeToggleCard(
                     Text(
                         text = "Dark Theme",
                         style = MaterialTheme.typography.bodyLarge,
-                        color = TextPrimary
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
                         text = "Toggle between light and dark mode",
                         style = MaterialTheme.typography.bodySmall,
-                        color = TextTertiary
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
 
@@ -172,10 +167,10 @@ private fun ThemeToggleCard(
                     checked = isDarkTheme,
                     onCheckedChange = onThemeToggle,
                     colors = SwitchDefaults.colors(
-                        checkedThumbColor = TextPrimary,
-                        checkedTrackColor = Purple40,
-                        uncheckedThumbColor = TextSecondary,
-                        uncheckedTrackColor = GlassWhite30
+                        checkedThumbColor = MaterialTheme.colorScheme.onPrimary,
+                        checkedTrackColor = MaterialTheme.colorScheme.primary,
+                        uncheckedThumbColor = MaterialTheme.colorScheme.outline,
+                        uncheckedTrackColor = MaterialTheme.colorScheme.surfaceVariant
                     )
                 )
             }

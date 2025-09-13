@@ -13,10 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.ui.theme.GlassWhite15
-import com.gigapingu.invoice4me.ui.theme.GlassWhite20
-import com.gigapingu.invoice4me.ui.theme.GlassWhite30
-import com.gigapingu.invoice4me.ui.theme.TextPrimary
-import com.gigapingu.invoice4me.ui.theme.TextTertiary
 
 @Composable
 fun CompanyDataField(
@@ -30,7 +26,7 @@ fun CompanyDataField(
             text = label,
             style = MaterialTheme.typography.labelMedium,
             fontWeight = FontWeight.Medium,
-            color = TextPrimary,
+            color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.padding(bottom = 4.dp)
         )
 
@@ -40,19 +36,19 @@ fun CompanyDataField(
             placeholder = {
                 Text(
                     text = placeholder,
-                    color = TextTertiary,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     style = MaterialTheme.typography.bodyMedium
                 )
             },
             modifier = Modifier.fillMaxWidth(),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedTextColor = TextPrimary,
-                unfocusedTextColor = TextPrimary,
-                cursorColor = TextPrimary,
-                focusedBorderColor = GlassWhite30,
-                unfocusedBorderColor = GlassWhite20,
-                focusedContainerColor = GlassWhite15,
-                unfocusedContainerColor = GlassWhite15
+                focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                cursorColor = MaterialTheme.colorScheme.primary,
+                focusedBorderColor = MaterialTheme.colorScheme.primary,
+                unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+                focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.1f),
+                unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.1f)
             ),
             shape = RoundedCornerShape(12.dp),
             textStyle = MaterialTheme.typography.bodyMedium
