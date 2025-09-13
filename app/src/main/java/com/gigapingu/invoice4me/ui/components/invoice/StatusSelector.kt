@@ -12,7 +12,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.model.InvoiceStatus
-import com.gigapingu.invoice4me.ui.theme.*
 
 @Composable
 fun StatusSelector(
@@ -44,10 +43,10 @@ private fun StatusOption(
     modifier: Modifier = Modifier
 ) {
     val (backgroundColor, textColor, text) = when (status) {
-        InvoiceStatus.PAID -> Triple(StatusPaidBg, StatusPaidGreen, "Paid")
-        InvoiceStatus.SENT -> Triple(StatusSentBg, StatusSentBlue, "Sent")
-        InvoiceStatus.DRAFT -> Triple(StatusDraftBg, StatusDraftGray, "Draft")
-        InvoiceStatus.OVERDUE -> Triple(StatusOverdueBg, StatusOverdueRed, "Overdue")
+        InvoiceStatus.PAID -> Triple(MaterialTheme.colorScheme.secondaryContainer, MaterialTheme.colorScheme.onSecondaryContainer, "Paid")
+        InvoiceStatus.SENT -> Triple(MaterialTheme.colorScheme.primaryContainer, MaterialTheme.colorScheme.primary, "Sent")
+        InvoiceStatus.DRAFT -> Triple(MaterialTheme.colorScheme.surfaceVariant, MaterialTheme.colorScheme.onSurfaceVariant, "Draft")
+        InvoiceStatus.OVERDUE -> Triple(MaterialTheme.colorScheme.errorContainer, MaterialTheme.colorScheme.error, "Overdue")
     }
     
     Surface(

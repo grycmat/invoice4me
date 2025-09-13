@@ -24,10 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.ui.theme.GlassWhite10
-import com.gigapingu.invoice4me.ui.theme.GlassWhite25
-import com.gigapingu.invoice4me.ui.theme.TextPrimary
-import com.gigapingu.invoice4me.ui.theme.TextSecondary
-import com.gigapingu.invoice4me.ui.theme.TextTertiary
 
 @Composable
 fun InvoiceItemsEmptyState(onAddItem: () -> Unit) {
@@ -51,7 +47,7 @@ fun InvoiceItemsEmptyState(onAddItem: () -> Unit) {
                 modifier = Modifier
                     .padding(24.dp)
                     .size(32.dp),
-                tint = TextTertiary
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
 
@@ -62,13 +58,13 @@ fun InvoiceItemsEmptyState(onAddItem: () -> Unit) {
             Text(
                 text = "No items added yet",
                 style = MaterialTheme.typography.titleMedium,
-                color = TextPrimary,
+                color = MaterialTheme.colorScheme.onSurface,
                 fontWeight = FontWeight.Medium
             )
             Text(
                 text = "Add items to build your invoice",
                 style = MaterialTheme.typography.bodyMedium,
-                color = TextSecondary
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
 
@@ -76,8 +72,8 @@ fun InvoiceItemsEmptyState(onAddItem: () -> Unit) {
             onClick = onAddItem,
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = GlassWhite25,
-                contentColor = TextPrimary
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary
             )
         ) {
             Icon(

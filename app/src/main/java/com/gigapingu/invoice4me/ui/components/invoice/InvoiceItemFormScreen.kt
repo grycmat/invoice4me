@@ -29,7 +29,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.model.*
 import com.gigapingu.invoice4me.ui.components.ErrorMessage
-import com.gigapingu.invoice4me.ui.theme.*
+import com.gigapingu.invoice4me.ui.theme.GlassBlue1
+import com.gigapingu.invoice4me.ui.theme.GlassPink1
+import com.gigapingu.invoice4me.ui.theme.GlassWhite20
+import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
 import com.gigapingu.invoice4me.utils.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -165,12 +168,12 @@ private fun InvoiceItemFormHeader(
             modifier = Modifier
                 .size(40.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(GlassWhite20)
+                .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.2f))
         ) {
             Icon(
                 imageVector = Icons.Default.Close,
                 contentDescription = "Back",
-                tint = TextPrimary,
+                tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.size(20.dp)
             )
         }
@@ -180,7 +183,7 @@ private fun InvoiceItemFormHeader(
         Text(
             text = title,
             style = MaterialTheme.typography.headlineSmall,
-            color = TextPrimary,
+            color = MaterialTheme.colorScheme.onSurface,
             fontWeight = FontWeight.Bold
         )
     }
@@ -314,59 +317,12 @@ private fun InvoiceItemFormCard(
             Spacer(modifier = Modifier.height(8.dp))
 
             // Action Buttons
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                OutlinedButton(
-                    onClick = onCancel,
-                    modifier = Modifier.weight(1f),
-                    enabled = !formState.isLoading,
-                    shape = RoundedCornerShape(12.dp),
-                    colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = TextPrimary
-                    ),
-                    border = androidx.compose.foundation.BorderStroke(
-                        1.dp, 
-                        TextTertiary
-                    )
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Close,
-                        contentDescription = null,
-                        modifier = Modifier.size(18.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Cancel")
-                }
-
-                Button(
-                    onClick = onSave,
-                    modifier = Modifier.weight(1f),
-                    enabled = !formState.isLoading,
-                    shape = RoundedCornerShape(12.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = GlassWhite25,
-                        contentColor = TextPrimary
-                    )
-                ) {
-                    if (formState.isLoading) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(18.dp),
-                            strokeWidth = 2.dp,
-                            color = TextPrimary
-                        )
-                    } else {
-                        Icon(
-                            imageVector = Icons.Default.Check,
-                            contentDescription = null,
-                            modifier = Modifier.size(18.dp)
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(if (formState.isLoading) "Saving..." else "Save Item")
-                }
-            }
+            InvoiceActionButtons(
+                onCancel = onCancel,
+                onSave = onSave,
+                isLoading = formState.isLoading,
+                saveButtonText = "Save Item"
+            )
         }
     }
 }
@@ -382,7 +338,7 @@ private fun UnitTypeSelector(
         Text(
             text = "Unit Type",
             style = MaterialTheme.typography.labelLarge,
-            color = TextSecondary,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             fontWeight = FontWeight.Medium,
             modifier = Modifier.padding(bottom = 8.dp)
         )
@@ -397,19 +353,19 @@ private fun UnitTypeSelector(
                     .clickable { expanded = true },
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-                    unfocusedContainerColor = GlassWhite15,
-                    focusedContainerColor = GlassWhite20,
-                    unfocusedBorderColor = GlassWhite30,
-                    focusedBorderColor = GlassWhite50,
-                    unfocusedTextColor = TextPrimary,
-                    focusedTextColor = TextPrimary,
-                    cursorColor = TextPrimary
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.1f),
+                    focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.2f),
+                    unfocusedBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f),
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                    focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                    cursorColor = MaterialTheme.colorScheme.primary
                 ),
                 trailingIcon = {
                     Icon(
                         imageVector = Icons.Default.ArrowDropDown,
                         contentDescription = "Select unit",
-                        tint = TextTertiary,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.clickable { expanded = true }
                     )
                 }
@@ -419,7 +375,7 @@ private fun UnitTypeSelector(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
                 modifier = Modifier.background(
-                    color = GlassWhite90,
+                    color = MaterialTheme.colorScheme.surface,
                     shape = RoundedCornerShape(12.dp)
                 )
             ) {
@@ -428,7 +384,7 @@ private fun UnitTypeSelector(
                         text = {
                             Text(
                                 text = "${unitType.displayName} (${unitType.symbol})",
-                                color = if (unitType == selectedUnit) TextPrimary else TextSecondary,
+                                color = if (unitType == selectedUnit) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
                                 fontWeight = if (unitType == selectedUnit) FontWeight.Medium else FontWeight.Normal
                             )
                         },
@@ -449,7 +405,7 @@ private fun TotalDisplayCard(total: Double) {
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(
-            containerColor = GlassWhite15
+            containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.1f)
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
@@ -463,13 +419,13 @@ private fun TotalDisplayCard(total: Double) {
             Text(
                 text = "Total",
                 style = MaterialTheme.typography.titleMedium,
-                color = TextSecondary,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontWeight = FontWeight.Medium
             )
             Text(
                 text = formatCurrency(total),
                 style = MaterialTheme.typography.titleLarge,
-                color = TextPrimary,
+                color = MaterialTheme.colorScheme.onSurface,
                 fontWeight = FontWeight.Bold
             )
         }

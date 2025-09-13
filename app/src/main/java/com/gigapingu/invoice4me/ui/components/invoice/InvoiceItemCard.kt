@@ -35,10 +35,6 @@ import com.gigapingu.invoice4me.model.InvoiceItem
 import com.gigapingu.invoice4me.ui.theme.GlassWhite15
 import com.gigapingu.invoice4me.ui.theme.GlassWhite20
 import com.gigapingu.invoice4me.ui.theme.GlassWhite90
-import com.gigapingu.invoice4me.ui.theme.StatusOverdueRed
-import com.gigapingu.invoice4me.ui.theme.TextPrimary
-import com.gigapingu.invoice4me.ui.theme.TextSecondary
-import com.gigapingu.invoice4me.ui.theme.TextTertiary
 import com.gigapingu.invoice4me.utils.formatCurrency
 import com.gigapingu.invoice4me.utils.formatQuantityWithUnit
 
@@ -74,7 +70,7 @@ fun InvoiceItemCard(
                     Text(
                         text = item.name,
                         style = MaterialTheme.typography.titleSmall,
-                        color = TextPrimary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         fontWeight = FontWeight.Bold,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis
@@ -83,7 +79,7 @@ fun InvoiceItemCard(
                         Text(
                             text = item.legalBasis,
                             style = MaterialTheme.typography.bodySmall,
-                            color = TextTertiary,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -103,7 +99,7 @@ fun InvoiceItemCard(
                         Icon(
                             imageVector = Icons.Default.Edit,
                             contentDescription = "Edit item",
-                            tint = TextSecondary,
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.size(16.dp)
                         )
                     }
@@ -118,7 +114,7 @@ fun InvoiceItemCard(
                         Icon(
                             imageVector = Icons.Default.Delete,
                             contentDescription = "Delete item",
-                            tint = StatusOverdueRed,
+                            tint = MaterialTheme.colorScheme.error,
                             modifier = Modifier.size(16.dp)
                         )
                     }
@@ -135,19 +131,19 @@ fun InvoiceItemCard(
                     Text(
                         text = formatQuantityWithUnit(item.quantity, item.unitType),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = TextSecondary
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Text(
                         text = "${formatCurrency(item.pricePerUnit)} per ${item.unitType.symbol}",
                         style = MaterialTheme.typography.bodySmall,
-                        color = TextTertiary
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
 
                 Text(
                     text = formatCurrency(item.total),
                     style = MaterialTheme.typography.titleMedium,
-                    color = TextPrimary,
+                    color = MaterialTheme.colorScheme.onSurface,
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -161,13 +157,13 @@ fun InvoiceItemCard(
             title = {
                 Text(
                     text = "Delete Item",
-                    color = TextPrimary
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             },
             text = {
                 Text(
                     text = "Are you sure you want to delete \"${item.name}\"? This action cannot be undone.",
-                    color = TextSecondary
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             },
             confirmButton = {
@@ -177,7 +173,7 @@ fun InvoiceItemCard(
                         showDeleteConfirmation = false
                     },
                     colors = ButtonDefaults.textButtonColors(
-                        contentColor = StatusOverdueRed
+                        contentColor = MaterialTheme.colorScheme.error
                     )
                 ) {
                     Text("Delete")
@@ -187,7 +183,7 @@ fun InvoiceItemCard(
                 TextButton(
                     onClick = { showDeleteConfirmation = false },
                     colors = ButtonDefaults.textButtonColors(
-                        contentColor = TextPrimary
+                        contentColor = MaterialTheme.colorScheme.onSurface
                     )
                 ) {
                     Text("Cancel")

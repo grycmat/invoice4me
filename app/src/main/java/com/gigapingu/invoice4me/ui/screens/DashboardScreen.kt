@@ -31,7 +31,6 @@ import com.gigapingu.invoice4me.ui.components.StatsCards
 import com.gigapingu.invoice4me.ui.theme.GlassBlue1
 import com.gigapingu.invoice4me.ui.theme.GlassPink1
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
-import com.gigapingu.invoice4me.ui.theme.TextPrimary
 import com.gigapingu.invoice4me.utils.calculatePadding
 
 @Composable
@@ -75,7 +74,7 @@ fun DashboardScreen(modifier: Modifier = Modifier, contentPadding: PaddingValues
                     text = "Recent Invoices",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
-                    color = TextPrimary,
+                    color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.padding(vertical = 12.dp)
                 )
             }

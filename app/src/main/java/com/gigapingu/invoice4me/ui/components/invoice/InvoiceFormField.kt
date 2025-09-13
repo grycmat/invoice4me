@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.gigapingu.invoice4me.ui.theme.*
+import com.gigapingu.invoice4me.ui.theme.GlassWhite10
 
 @Composable
 fun InvoiceFormField(
@@ -32,7 +32,7 @@ fun InvoiceFormField(
         Text(
             text = label,
             style = MaterialTheme.typography.labelLarge,
-            color = if (enabled) TextSecondary else TextQuaternary,
+            color = if (enabled) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
             fontWeight = FontWeight.Medium,
             modifier = Modifier.padding(bottom = 8.dp)
         )
@@ -45,14 +45,14 @@ fun InvoiceFormField(
             placeholder = {
                 Text(
                     text = placeholder,
-                    color = TextQuaternary
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             },
             prefix = if (prefix.isNotEmpty()) {
                 {
                     Text(
                         text = prefix,
-                        color = if (enabled) TextSecondary else TextQuaternary
+                        color = if (enabled) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
                     )
                 }
             } else null,
@@ -62,17 +62,17 @@ fun InvoiceFormField(
             keyboardActions = keyboardActions,
             shape = RoundedCornerShape(12.dp),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedTextColor = TextPrimary,
-                unfocusedTextColor = TextPrimary,
-                disabledTextColor = TextQuaternary,
+                focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                disabledTextColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                 focusedContainerColor = GlassWhite10,
                 unfocusedContainerColor = GlassWhite10,
                 disabledContainerColor = GlassWhite10,
-                focusedBorderColor = TextTertiary,
-                unfocusedBorderColor = TextQuaternary,
-                disabledBorderColor = TextQuaternary.copy(alpha = 0.5f),
-                errorBorderColor = StatusOverdueRed,
-                cursorColor = TextPrimary
+                focusedBorderColor = MaterialTheme.colorScheme.primary,
+                unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+                disabledBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f),
+                errorBorderColor = MaterialTheme.colorScheme.error,
+                cursorColor = MaterialTheme.colorScheme.primary
             )
         )
         
@@ -80,7 +80,7 @@ fun InvoiceFormField(
             Text(
                 text = it,
                 style = MaterialTheme.typography.bodySmall,
-                color = StatusOverdueRed,
+                color = MaterialTheme.colorScheme.error,
                 modifier = Modifier.padding(top = 4.dp)
             )
         }

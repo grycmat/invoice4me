@@ -37,13 +37,13 @@ fun DashboardHeader() {
                     text = "Invoice Dashboard",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
-                    color = TextPrimary
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     text = "Manage your invoices efficiently",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = TextSecondary
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
             Icon(
@@ -52,7 +52,7 @@ fun DashboardHeader() {
                 modifier = Modifier
                     .align(Alignment.CenterEnd)
                     .size(32.dp),
-                tint = TextTertiary
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
     }
