@@ -20,6 +20,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,6 +40,8 @@ import com.gigapingu.invoice4me.model.SettingsState
 import com.gigapingu.invoice4me.ui.company.CompanyDataForm
 import com.gigapingu.invoice4me.ui.company.CompanyDataViewModel
 import com.gigapingu.invoice4me.ui.company.CompanyDataViewModelFactory
+import com.gigapingu.invoice4me.ui.settings.SettingsViewModel
+import com.gigapingu.invoice4me.ui.settings.SettingsViewModelFactory
 import com.gigapingu.invoice4me.ui.theme.GlassBlue1
 import com.gigapingu.invoice4me.ui.theme.GlassPink1
 import com.gigapingu.invoice4me.ui.theme.GlassWhite15
@@ -54,19 +57,21 @@ import com.gigapingu.invoice4me.utils.calculatePadding
 fun SettingsScreen(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
-    initialSettings: SettingsState = SettingsState(),
-    onThemeToggle: (Boolean) -> Unit = {},
 ) {
     val context = LocalContext.current
     val application = context.applicationContext as Invoice4MeApplication
     val companyDataViewModel: CompanyDataViewModel = viewModel(
         factory = CompanyDataViewModelFactory(application.companyDataRepository)
     )
-    
+    val settingsViewModel: SettingsViewModel = viewModel(
+        factory = SettingsViewModelFactory(
+            application.userPreferencesRepository,
+        )
+    )
+
+    val settings by settingsViewModel.settingsState.collectAsState()
     val layoutDirection = LocalLayoutDirection.current
     val combinedPadding = calculatePadding(contentPadding, layoutDirection)
-
-    var settingsState by remember { mutableStateOf(initialSettings) }
 
     Box(
         modifier = modifier
@@ -92,10 +97,9 @@ fun SettingsScreen(
 
             item {
                 ThemeToggleCard(
-                    isDarkTheme = settingsState.isDarkTheme,
+                    isDarkTheme = settings.isDarkTheme,
                     onThemeToggle = { isDark ->
-                        settingsState = settingsState.copy(isDarkTheme = isDark)
-                        onThemeToggle(isDark)
+                        settingsViewModel.toggleTheme(isDark)
                     }
                 )
             }
@@ -209,7 +213,7 @@ private fun SettingsScreenContent(
 ) {
     val layoutDirection = LocalLayoutDirection.current
     val combinedPadding = calculatePadding(contentPadding, layoutDirection)
-    
+
     var currentSettingsState by remember { mutableStateOf(settingsState) }
 
     Box(
