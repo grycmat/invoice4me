@@ -55,7 +55,8 @@ fun InvoiceFormCard(
     onCancel: () -> Unit,
     onNavigateToAddItem: () -> Unit,
     onNavigateToEditItem: (InvoiceItem) -> Unit,
-    focusManager: FocusManager
+    focusManager: FocusManager,
+    onOpenPreview: () -> Unit
 ) {
 
     val captureController = rememberCaptureController()
@@ -252,6 +253,11 @@ fun InvoiceFormCard(
                 },
             ) {
                 Text("Generate PDF")
+            }
+            Button(
+                onClick = onOpenPreview,
+            ) {
+                Text("Preview PDF")
             }
             Spacer(modifier = Modifier.height(8.dp))
 

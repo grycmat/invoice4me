@@ -40,7 +40,6 @@ import com.gigapingu.invoice4me.utils.getCurrentDate
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun InvoiceFormContainerScreen(
     modifier: Modifier = Modifier,
@@ -172,7 +171,8 @@ fun InvoiceFormContainerScreen(
                 onCancel = onNavigateBack,
                 onNavigateToAddItem = onNavigateToAddItem,
                 onNavigateToEditItem = onNavigateToEditItem,
-                focusManager = focusManager
+                focusManager = focusManager,
+                onOpenPreview = onOpenPreview
             )
         }
     }

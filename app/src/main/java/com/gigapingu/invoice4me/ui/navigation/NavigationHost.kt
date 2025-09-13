@@ -16,6 +16,7 @@ import com.gigapingu.invoice4me.ui.components.invoice.InvoiceItemFormScreen
 import com.gigapingu.invoice4me.ui.navigation.routes.Routes
 import com.gigapingu.invoice4me.ui.screens.DashboardScreen
 import com.gigapingu.invoice4me.ui.screens.InvoiceFormContainerScreen
+import com.gigapingu.invoice4me.ui.screens.InvoicePreview
 import com.gigapingu.invoice4me.ui.screens.SettingsScreen
 
 @Composable
@@ -49,6 +50,8 @@ fun NavigationHost(
                 },
                 onItemsChanged = { items ->
                 },
+                onOpenPreview = {navController.navigate(Routes.PdfPreview.route)
+                }
             )
         }
         composable(Routes.AddInvoiceItem.route) {
@@ -85,8 +88,8 @@ fun NavigationHost(
                 contentPadding = innerPadding
             )
         }
-        composable("preview") {
-            PdfPrinter()
+        composable(Routes.PdfPreview.route) {
+            InvoicePreview()
         }
     }
 }

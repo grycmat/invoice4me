@@ -14,4 +14,5 @@ sealed class Routes(val route: String) {
     object EditInvoiceItem : Routes("edit_invoice_item/{itemId}") {
         fun createRoute(itemId: String) = "edit_invoice_item/$itemId"
     }
+    object PdfPreview : Routes("pdf_preview")
 }
