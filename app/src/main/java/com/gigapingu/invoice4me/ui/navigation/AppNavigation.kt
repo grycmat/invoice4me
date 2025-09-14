@@ -1,5 +1,6 @@
 package com.gigapingu.invoice4me.ui.navigation
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
@@ -12,10 +13,10 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.gigapingu.invoice4me.ui.navigation.routes.Routes
-import com.gigapingu.invoice4me.ui.theme.GlassBlue1
-import com.gigapingu.invoice4me.ui.theme.GlassWhite50
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
+import com.gigapingu.invoice4me.ui.theme.GlassWhite50
 import com.gigapingu.invoice4me.ui.theme.GlassWhite60
+import com.gigapingu.invoice4me.ui.theme.GlassDark20
 
 data class AppNavItem(
     val label: String,
@@ -33,18 +34,27 @@ val navigationItems = listOf(
 fun AppNavigation(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+    // Theme-aware navigation with enhanced glassmorphism overlays
 
     NavigationBar(
-        containerColor = GlassWhite50
+        containerColor = if (isSystemInDarkTheme()) {
+            GlassDark20 // Enhanced dark glassmorphism overlay
+        } else {
+            GlassWhite50 // Enhanced light glassmorphism overlay
+        }
     ) {
         navigationItems.forEach { item ->
             NavigationBarItem(
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = GlassBlue1,
-                    selectedTextColor = GlassBlue1,
-                    unselectedIconColor = GlassBlue1,
-                    unselectedTextColor = GlassBlue1,
-                    indicatorColor = GlassWhite60
+                    selectedIconColor = MaterialTheme.colorScheme.primary,
+                    selectedTextColor = MaterialTheme.colorScheme.primary,
+                    unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    indicatorColor = if (isSystemInDarkTheme()) {
+                        MaterialTheme.colorScheme.surfaceContainerHigh // Theme-aware dark selection
+                    } else {
+                        MaterialTheme.colorScheme.surfaceContainerHigh // Theme-aware light selection
+                    }
                 ),
                 selected = currentRoute == item.route,
                 onClick = {

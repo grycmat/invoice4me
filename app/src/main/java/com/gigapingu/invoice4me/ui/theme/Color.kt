@@ -20,9 +20,9 @@ import androidx.compose.ui.graphics.Color
  * - Surface containers provide 5 elevation levels for proper layering
  */
 
-// LIGHT THEME COLORS
-// Primary Colors - Based on existing GlassBlue1 with accessibility improvements
-val LightPrimary = Color(0xFF5A61E8)           // Slightly darker for better contrast
+// LIGHT THEME COLORS - Optimized for Glassmorphism
+// Primary Colors - Refined blue palette with better glassmorphism integration
+val LightPrimary = Color(0xFF5A61E8)           // Rich periwinkle blue
 val LightOnPrimary = Color(0xFFFFFFFF)         // Pure white for maximum contrast
 val LightPrimaryContainer = Color(0xFFE8EAFF)  // Very light tint for containers
 val LightOnPrimaryContainer = Color(0xFF1A1C72) // Dark blue for container text
@@ -45,26 +45,26 @@ val LightOnError = Color(0xFFFFFFFF)           // White on error
 val LightErrorContainer = Color(0xFFFFEBEB)    // Light red container
 val LightOnErrorContainer = Color(0xFF741B1B)  // Dark red for container text
 
-// Surface Colors - Glassmorphism-optimized
-val LightBackground = Color(0xFFFAFBFF)        // Very light blue-white
-val LightOnBackground = Color(0xFF1A1C2E)      // Dark blue-gray for text
-val LightSurface = Color(0xFFFAFBFF)           // Same as background for consistency
-val LightOnSurface = Color(0xFF1A1C2E)         // Primary text color
+// Surface Colors - Enhanced for glassmorphism with softer text contrast
+val LightBackground = Color(0xFFF8FAFF)        // Softer blue-white background (updated)
+val LightOnBackground = Color(0xFF2D3142)      // Softer dark blue-gray (improved readability)
+val LightSurface = Color(0xFFF8FAFF)           // Same as background for consistency
+val LightOnSurface = Color(0xFF2D3142)         // Softer primary text color (improved)
 val LightSurfaceVariant = Color(0xFFE6E8F2)    // Slightly darker surface
-val LightOnSurfaceVariant = Color(0xFF474A5C)  // Medium contrast text
+val LightOnSurfaceVariant = Color(0xFF5A5E70)  // Enhanced medium contrast text (improved)
 
-// Outline Colors
-val LightOutline = Color(0xFF787B8E)           // Medium gray for borders
-val LightOutlineVariant = Color(0xFFC7CADB)    // Light gray for subtle borders
+// Outline Colors - Better harmony with glassmorphism
+val LightOutline = Color(0xFF8B8E9E)           // Softer gray for borders
+val LightOutlineVariant = Color(0xFFD0D3E0)    // Light gray for subtle borders
 
-// Additional Surface Colors for glassmorphism layers
-val LightSurfaceDim = Color(0xFFDADCE0)        // Dimmed surface
-val LightSurfaceBright = Color(0xFFFAFBFF)     // Bright surface
-val LightSurfaceContainerLowest = Color(0xFFFFFFFF)    // Pure white
-val LightSurfaceContainerLow = Color(0xFFF4F5FA)       // Very light
-val LightSurfaceContainer = Color(0xFFEEF0F5)          // Light container
-val LightSurfaceContainerHigh = Color(0xFFE8EAEF)      // Medium container
-val LightSurfaceContainerHighest = Color(0xFFE2E4EA)   // Highest elevation
+// Enhanced Surface Elevation Colors for glassmorphism layers (designer improvements)
+val LightSurfaceDim = Color(0xFFE8ECFA)        // Enhanced dimmed surface
+val LightSurfaceBright = Color(0xFFFCFDFF)     // Brighter surface
+val LightSurfaceContainerLowest = Color(0xFFFFFFFF)    // Pure white (level 1)
+val LightSurfaceContainerLow = Color(0xFFF6F8FD)       // Very light surface (level 2)
+val LightSurfaceContainer = Color(0xFFEEF2F9)          // Light container (level 3)
+val LightSurfaceContainerHigh = Color(0xFFE6EBF5)      // Medium container (level 4)
+val LightSurfaceContainerHighest = Color(0xFFDEE4F0)   // Highest elevation (level 5)
 
 // Inverse Colors
 val LightInverseSurface = Color(0xFF2F3142)    // Dark surface for contrast
@@ -74,14 +74,14 @@ val LightInversePrimary = Color(0xFFB3B8FF)    // Light primary for dark backgro
 // Scrim
 val LightScrim = Color(0xFF000000)             // Black for overlays
 
-// DARK THEME COLORS
-// Primary Colors - Maintaining glassmorphism aesthetic in dark mode
-val DarkPrimary = Color(0xFF9BB5FF)            // Your existing GlassPink1
+// DARK THEME COLORS - Enhanced for True Dark Mode Experience
+// Primary Colors - Optimized glassmorphism aesthetic with better contrast
+val DarkPrimary = Color(0xFF9BB5FF)            // Soft lavender blue (your existing GlassPink1)
 val DarkOnPrimary = Color(0xFF1A1C72)          // Dark blue for contrast
 val DarkPrimaryContainer = Color(0xFF3A3F7A)   // Medium dark container
 val DarkOnPrimaryContainer = Color(0xFFE8EAFF) // Light text on dark container
 
-// Secondary Colors
+// Secondary Colors - Enhanced contrast
 val DarkSecondary = Color(0xFFB8BBE0)          // Light purple-gray
 val DarkOnSecondary = Color(0xFF2E3154)        // Dark text
 val DarkSecondaryContainer = Color(0xFF44476B) // Dark container
@@ -93,32 +93,32 @@ val DarkOnTertiary = Color(0xFF3D2940)         // Dark text
 val DarkTertiaryContainer = Color(0xFF553F58)  // Dark container
 val DarkOnTertiaryContainer = Color(0xFFF5E8F6) // Light container text
 
-// Error Colors
+// Error Colors - Enhanced visibility
 val DarkError = Color(0xFFFF6B6B)             // Bright red for dark mode
 val DarkOnError = Color(0xFF741B1B)           // Dark red text
 val DarkErrorContainer = Color(0xFF8B2626)    // Dark red container
 val DarkOnErrorContainer = Color(0xFFFFE6E6)  // Light error container text
 
-// Surface Colors - Dark glassmorphism
-val DarkBackground = Color(0xFF0F1116)         // Very dark blue-black
-val DarkOnBackground = Color(0xFFE8EAEF)       // Light text
-val DarkSurface = Color(0xFF0F1116)            // Same as background
+// Surface Colors - Enhanced deeper dark glassmorphism for true dark experience
+val DarkBackground = Color(0xFF0A0C10)         // Deeper dark blue-black (designer improved)
+val DarkOnBackground = Color(0xFFE8EAEF)       // Light text with excellent contrast
+val DarkSurface = Color(0xFF0A0C10)            // Same as background for consistency
 val DarkOnSurface = Color(0xFFE8EAEF)          // Primary light text
 val DarkSurfaceVariant = Color(0xFF474A5C)     // Darker variant
 val DarkOnSurfaceVariant = Color(0xFFC7CADB)   // Light variant text
 
-// Dark Outline Colors
-val DarkOutline = Color(0xFF919AAA)           // Medium gray outlines
-val DarkOutlineVariant = Color(0xFF474A5C)    // Darker variant outlines
+// Dark Outline Colors - Better glassmorphism integration
+val DarkOutline = Color(0xFF8B94A6)           // Softer gray outlines
+val DarkOutlineVariant = Color(0xFF52566B)    // Enhanced darker variant outlines
 
-// Dark Surface Elevation Colors
-val DarkSurfaceDim = Color(0xFF0F1116)         // Dimmest surface
-val DarkSurfaceBright = Color(0xFF35373E)      // Brightest dark surface
-val DarkSurfaceContainerLowest = Color(0xFF0A0D11)     // Lowest container
-val DarkSurfaceContainerLow = Color(0xFF171A1F)        // Low container
-val DarkSurfaceContainer = Color(0xFF1B1E23)           // Standard container
-val DarkSurfaceContainerHigh = Color(0xFF262931)       // High container
-val DarkSurfaceContainerHighest = Color(0xFF30333C)    // Highest container
+// Enhanced Dark Surface Elevation Colors for glassmorphism depth (designer specifications)
+val DarkSurfaceDim = Color(0xFF0A0C10)         // Deepest surface
+val DarkSurfaceBright = Color(0xFF3A3D46)      // Brighter dark surface (designer enhanced)
+val DarkSurfaceContainerLowest = Color(0xFF06080C)     // Deepest container (level 1)
+val DarkSurfaceContainerLow = Color(0xFF14171C)        // Low container (level 2)
+val DarkSurfaceContainer = Color(0xFF1A1D24)           // Standard container (level 3)
+val DarkSurfaceContainerHigh = Color(0xFF252831)       // High container (level 4)
+val DarkSurfaceContainerHighest = Color(0xFF30343E)    // Highest container (level 5)
 
 // Dark Inverse Colors
 val DarkInverseSurface = Color(0xFFE8EAEF)     // Light surface
@@ -142,7 +142,7 @@ val GlassSubtle2 = Color(0xFF7A8FFF)   // Monochromatic blue end
 val GlassPurple1 = Color(0xFF667eea)   // Purple-blue start (original)
 val GlassPurple2 = Color(0xFFa8a4ff)   // Purple-blue end (softer)
 
-// Enhanced glassmorphism colors
+// Enhanced glassmorphism colors with theme-aware variants
 val GlassWhite10 = Color(0x1AFFFFFF)  // 10% opacity
 val GlassWhite15 = Color(0x26FFFFFF)  // 15% opacity
 val GlassWhite20 = Color(0x33FFFFFF)  // 20% opacity
@@ -161,8 +161,14 @@ val GlassWhite80 = Color(0xCCFFFFFF)  // 80% opacity
 val GlassWhite85 = Color(0xD9FFFFFF)  // 85% opacity
 val GlassWhite90 = Color(0xE6FFFFFF)  // 90% opacity
 
+// Dark glassmorphism colors for enhanced dark mode integration (designer specifications)
+val GlassDark10 = Color(0x1A000000)   // 10% black opacity for subtle overlays
+val GlassDark15 = Color(0x26000000)   // 15% black opacity
+val GlassDark20 = Color(0x33000000)   // 20% black opacity for navigation
+val GlassDark25 = Color(0x40000000)   // 25% black opacity
+val GlassDark30 = Color(0x4D000000)   // 30% black opacity for deep overlays
 
-// Text colors for better contrast
+// Theme-aware text colors - Use MaterialTheme.colorScheme instead for better integration
 val TextPrimary = Color(0xFFFFFFFF)
 val TextSecondary = Color(0xE6FFFFFF)  // 90% opacity
 val TextTertiary = Color(0xB3FFFFFF)   // 70% opacity
