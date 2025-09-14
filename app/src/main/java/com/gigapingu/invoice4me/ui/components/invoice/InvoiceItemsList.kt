@@ -3,29 +3,22 @@ package com.gigapingu.invoice4me.ui.components.invoice
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.model.InvoiceItem
 import com.gigapingu.invoice4me.model.UnitType
-import com.gigapingu.invoice4me.ui.theme.GlassBlue1
-import com.gigapingu.invoice4me.ui.theme.GlassPink1
-import com.gigapingu.invoice4me.ui.theme.GlassWhite15
+import com.gigapingu.invoice4me.modifier.gradientBackground
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
 import com.gigapingu.invoice4me.utils.calculateInvoiceItemsTotal
 
@@ -90,12 +83,7 @@ fun InvoiceItemsListPreview() {
     Invoice4MeTheme {
         Box(
             modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    brush = androidx.compose.ui.graphics.Brush.verticalGradient(
-                        colors = listOf(GlassBlue1, GlassPink1)
-                    )
-                )
+                .gradientBackground()
                 .padding(20.dp)
         ) {
             InvoiceItemsList(
@@ -139,12 +127,7 @@ fun InvoiceItemsListEmptyPreview() {
     Invoice4MeTheme {
         Box(
             modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    brush = androidx.compose.ui.graphics.Brush.verticalGradient(
-                        colors = listOf(GlassBlue1, GlassPink1)
-                    )
-                )
+                .gradientBackground()
                 .padding(20.dp)
         ) {
             InvoiceItemsList(items = emptyList())

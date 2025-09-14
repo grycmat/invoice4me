@@ -91,9 +91,9 @@ val DarkInversePrimary = Color(0xFF5A61E8)
 val DarkScrim = Color(0xFF000000)
 
 val GlassBlue1 = Color(0xFF6B73FF)
-val GlassBlue2 = Color(0xFF764ba2)
+val GlassBlue2 = Color(0xFF2C3175)
 val GlassPink1 = Color(0xFF9BB5FF)
-val GlassPink2 = Color(0xFFf5576c)
+val GlassPink2 = Color(0xFF6E212D)
 val GlassCyan1 = Color(0xFF4facfe)
 val GlassCyan2 = Color(0xFF00f2fe)
 

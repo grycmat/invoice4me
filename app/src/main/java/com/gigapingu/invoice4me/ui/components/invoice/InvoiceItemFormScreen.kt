@@ -28,6 +28,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.model.*
+import com.gigapingu.invoice4me.modifier.gradientBackground
 import com.gigapingu.invoice4me.ui.components.ErrorMessage
 import com.gigapingu.invoice4me.ui.theme.GlassBlue1
 import com.gigapingu.invoice4me.ui.theme.GlassPink1
@@ -114,15 +115,7 @@ fun InvoiceItemFormScreen(
 
     Box(
         modifier = modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        GlassBlue1,
-                        GlassPink1
-                    )
-                )
-            )
+            .gradientBackground()
     ) {
         Column(
             modifier = Modifier

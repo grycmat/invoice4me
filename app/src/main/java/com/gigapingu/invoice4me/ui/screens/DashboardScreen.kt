@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gigapingu.invoice4me.Invoice4MeApplication
 import com.gigapingu.invoice4me.data.sampleInvoices
+import com.gigapingu.invoice4me.modifier.gradientBackground
 import com.gigapingu.invoice4me.ui.InvoiceViewModel
 import com.gigapingu.invoice4me.ui.InvoiceViewModelFactory
 import com.gigapingu.invoice4me.ui.components.DashboardHeader
@@ -46,15 +47,7 @@ fun DashboardScreen(modifier: Modifier = Modifier, contentPadding: PaddingValues
 
     Box(
         modifier = modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        GlassBlue1,
-                        GlassPink1
-                    )
-                )
-            )
+            .gradientBackground()
     ) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),

@@ -27,6 +27,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gigapingu.invoice4me.Invoice4MeApplication
 import com.gigapingu.invoice4me.model.Invoice
 import com.gigapingu.invoice4me.model.InvoiceItem
+import com.gigapingu.invoice4me.modifier.gradientBackground
 import com.gigapingu.invoice4me.ui.InvoiceViewModel
 import com.gigapingu.invoice4me.ui.InvoiceViewModelFactory
 import com.gigapingu.invoice4me.ui.components.invoice.InvoiceFormCard
@@ -135,15 +136,7 @@ fun InvoiceFormContainerScreen(
 
     Box(
         modifier = modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        GlassBlue1,
-                        GlassPink1
-                    )
-                )
-            )
+            .gradientBackground()
     ) {
         Column(
             modifier = Modifier

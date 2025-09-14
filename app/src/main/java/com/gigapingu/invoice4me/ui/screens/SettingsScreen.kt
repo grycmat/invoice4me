@@ -37,6 +37,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gigapingu.invoice4me.Invoice4MeApplication
 import com.gigapingu.invoice4me.model.CompanyData
 import com.gigapingu.invoice4me.model.SettingsState
+import com.gigapingu.invoice4me.modifier.gradientBackground
 import com.gigapingu.invoice4me.ui.company.CompanyDataForm
 import com.gigapingu.invoice4me.ui.company.CompanyDataViewModel
 import com.gigapingu.invoice4me.ui.company.CompanyDataViewModelFactory
@@ -73,14 +74,7 @@ fun SettingsScreen(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        GlassBlue1,
-                        GlassPink1
-                    )
-                )
-            )
+            .gradientBackground()
     ) {
         LazyColumn(
             modifier = Modifier
@@ -144,15 +138,7 @@ private fun SettingsScreenContent(
 
     Box(
         modifier = modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        GlassBlue1,
-                        GlassPink1
-                    )
-                )
-            )
+            .gradientBackground()
     ) {
         LazyColumn(
             modifier = Modifier

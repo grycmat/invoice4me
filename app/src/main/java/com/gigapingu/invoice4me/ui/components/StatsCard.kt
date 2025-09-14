@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.model.Invoice
 import com.gigapingu.invoice4me.model.InvoiceStatus
+import com.gigapingu.invoice4me.modifier.gradientBackground
 import com.gigapingu.invoice4me.ui.theme.GlassBlue1
 import com.gigapingu.invoice4me.ui.theme.GlassPink1
 import com.gigapingu.invoice4me.ui.theme.GlassWhite15
@@ -119,15 +120,7 @@ fun StatsCardsPreview() {
         
         Box(
             modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    brush = Brush.verticalGradient(
-                        colors = listOf(
-                            GlassBlue1,
-                            GlassPink1
-                        )
-                    )
-                )
+                .gradientBackground()
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 StatsCards(invoices = sampleInvoices)
