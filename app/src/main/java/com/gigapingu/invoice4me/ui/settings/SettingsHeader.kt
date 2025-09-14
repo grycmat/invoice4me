@@ -16,7 +16,7 @@ fun SettingsHeader() {
         text = "Settings",
         style = MaterialTheme.typography.headlineMedium,
         fontWeight = FontWeight.Bold,
-        color = TextPrimary,
+        color = MaterialTheme.colorScheme.onSurface,
         modifier = Modifier.padding(vertical = 12.dp)
     )
 }

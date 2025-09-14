@@ -31,6 +31,18 @@ Invoice4Me is a modern Android invoice management application built with Jetpack
 ./gradlew testDebugUnitTest
 ```
 
+### Lint Commands
+```bash
+# Run lint on default variant
+./gradlew lint
+
+# Run lint and apply safe fixes
+./gradlew lintFix
+
+# Run lint on debug variant specifically
+./gradlew lintDebug
+```
+
 ### Development Tasks
 ```bash
 # Install debug APK to device
@@ -54,7 +66,10 @@ Invoice4Me is a modern Android invoice management application built with Jetpack
 ### Key Components
 - **Application**: `Invoice4MeApplication` - Provides database and repository instances
 - **Database**: `AppDatabase` - Room database with Invoice and InvoiceItem entities
-- **Repository**: `InvoiceRepository` - Mediates between ViewModels and data sources
+- **Repositories**:
+  - `InvoiceRepository` - Mediates invoice data operations
+  - `CompanyDataRepository` - Manages company profile data
+  - `UserPreferencesRepository` - Handles user settings and preferences
 - **ViewModel**: `InvoiceViewModel` - Manages UI-related data and business logic
 - **Navigation**: Uses Jetpack Navigation Compose with bottom navigation bar
 
@@ -83,6 +98,7 @@ com.gigapingu.invoice4me/
 - **KSP 1.9.10-1.0.13** for Room annotation processing
 - **Android Gradle Plugin 8.2.2**
 - **Minimum SDK 26, Target SDK 33, Compile SDK 34**
+- **Capturable library 2.1.0** for screenshot functionality
 
 ## Development Guidelines
 - UI follows glassmorphism design with Material3 components
@@ -98,7 +114,8 @@ com.gigapingu.invoice4me/
 - **Invoice**: Core invoice entity with status enum (Draft, Sent, Paid, Overdue)
 - **InvoiceItem**: Line items belonging to invoices (one-to-many relationship)
 - **InvoiceWithItems**: Relation class for querying invoices with their items
-- **CompanyData**: Data class for company profile information
+- **CompanyData**: Entity for company profile information with dedicated DAO
+- **UserPreferences**: Entity for user settings and preferences with dedicated DAO
 
 ## Testing Structure
 - Unit tests: `app/src/test/` - Test business logic and utilities

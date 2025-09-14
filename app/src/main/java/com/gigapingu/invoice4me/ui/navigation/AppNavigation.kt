@@ -48,8 +48,8 @@ fun AppNavigation(navController: NavController) {
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = MaterialTheme.colorScheme.primary,
                     selectedTextColor = MaterialTheme.colorScheme.primary,
-                    unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    unselectedIconColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                    unselectedTextColor = MaterialTheme.colorScheme.onSecondaryContainer,
                     indicatorColor = if (isSystemInDarkTheme()) {
                         MaterialTheme.colorScheme.surfaceContainerHigh // Theme-aware dark selection
                     } else {

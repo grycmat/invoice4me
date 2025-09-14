@@ -37,7 +37,7 @@ fun InvoiceItemsEmptyState(onAddItem: () -> Unit) {
         Card(
             shape = RoundedCornerShape(16.dp),
             colors = CardDefaults.cardColors(
-                containerColor = GlassWhite10
+                containerColor = MaterialTheme.colorScheme.surface
             ),
             elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
         ) {

@@ -24,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.gigapingu.invoice4me.ui.theme.GlassWhite20
 import com.gigapingu.invoice4me.utils.formatCurrency
 
 @Composable
@@ -80,7 +79,7 @@ fun InvoiceItemsHeader(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = GlassWhite20
+                    containerColor = MaterialTheme.colorScheme.surface,
                 ),
                 elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
             ) {

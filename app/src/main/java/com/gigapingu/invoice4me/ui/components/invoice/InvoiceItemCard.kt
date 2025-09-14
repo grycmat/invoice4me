@@ -32,8 +32,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.model.InvoiceItem
-import com.gigapingu.invoice4me.ui.theme.GlassWhite15
-import com.gigapingu.invoice4me.ui.theme.GlassWhite20
 import com.gigapingu.invoice4me.ui.theme.GlassWhite90
 import com.gigapingu.invoice4me.utils.formatCurrency
 import com.gigapingu.invoice4me.utils.formatQuantityWithUnit
@@ -50,7 +48,7 @@ fun InvoiceItemCard(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(
-            containerColor = GlassWhite20
+            containerColor = MaterialTheme.colorScheme.surface
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
@@ -94,7 +92,7 @@ fun InvoiceItemCard(
                         modifier = Modifier
                             .size(32.dp)
                             .clip(RoundedCornerShape(8.dp))
-                            .background(GlassWhite15)
+                            .background(MaterialTheme.colorScheme.surface)
                     ) {
                         Icon(
                             imageVector = Icons.Default.Edit,
@@ -109,7 +107,7 @@ fun InvoiceItemCard(
                         modifier = Modifier
                             .size(32.dp)
                             .clip(RoundedCornerShape(8.dp))
-                            .background(GlassWhite15)
+                            .background(MaterialTheme.colorScheme.surface)
                     ) {
                         Icon(
                             imageVector = Icons.Default.Delete,
