@@ -23,8 +23,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.model.InvoiceItem
 import com.gigapingu.invoice4me.model.UnitType
-import com.gigapingu.invoice4me.ui.theme.*
-import com.gigapingu.invoice4me.utils.*
+import com.gigapingu.invoice4me.ui.theme.GlassBlue1
+import com.gigapingu.invoice4me.ui.theme.GlassPink1
+import com.gigapingu.invoice4me.ui.theme.GlassWhite15
+import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
+import com.gigapingu.invoice4me.utils.calculateInvoiceItemsTotal
 
 @Composable
 fun InvoiceItemsList(

@@ -24,8 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.model.CompanyData
 import com.gigapingu.invoice4me.ui.theme.GlassWhite15
-import com.gigapingu.invoice4me.ui.theme.TextPrimary
-import com.gigapingu.invoice4me.ui.theme.TextTertiary
 
 @Composable
 fun CompanyDataForm(
@@ -67,13 +65,13 @@ fun CompanyDataForm(
                 text = "Company Information",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold,
-                color = TextPrimary
+                color = MaterialTheme.colorScheme.onSurface
             )
 
             Text(
                 text = "This information will appear on your invoices",
                 style = MaterialTheme.typography.bodySmall,
-                color = TextTertiary,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 

@@ -39,8 +39,6 @@ import com.gigapingu.invoice4me.model.InvoiceItem
 import com.gigapingu.invoice4me.model.InvoiceStatus
 import com.gigapingu.invoice4me.ui.components.ErrorMessage
 import com.gigapingu.invoice4me.ui.theme.GlassWhite20
-import com.gigapingu.invoice4me.ui.theme.TextSecondary
-import com.gigapingu.invoice4me.ui.theme.TextTertiary
 import com.gigapingu.invoice4me.utils.createInvoicePdf
 import dev.shreyaspatil.capturable.capturable
 import dev.shreyaspatil.capturable.controller.rememberCaptureController
@@ -183,7 +181,7 @@ fun InvoiceFormCard(
                 Text(
                     text = "Amount is automatically calculated from invoice items",
                     style = MaterialTheme.typography.bodySmall,
-                    color = TextTertiary,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(horizontal = 4.dp)
                 )
             }
@@ -202,7 +200,7 @@ fun InvoiceFormCard(
                     Icon(
                         imageVector = Icons.Default.DateRange,
                         contentDescription = "Select date",
-                        tint = TextTertiary
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 },
                 keyboardOptions = KeyboardOptions(
@@ -231,7 +229,7 @@ fun InvoiceFormCard(
             Text(
                 text = "Status",
                 style = MaterialTheme.typography.labelLarge,
-                color = TextSecondary,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontWeight = FontWeight.Medium
             )
 

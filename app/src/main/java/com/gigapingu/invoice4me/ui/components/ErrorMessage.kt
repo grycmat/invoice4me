@@ -9,8 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
-import com.gigapingu.invoice4me.ui.theme.StatusOverdueBg
-import com.gigapingu.invoice4me.ui.theme.StatusOverdueRed
 
 @Composable
 fun ErrorMessage(
@@ -21,14 +19,14 @@ fun ErrorMessage(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = StatusOverdueBg
+            containerColor = MaterialTheme.colorScheme.errorContainer
         )
     ) {
         Text(
             text = message,
             modifier = Modifier.padding(12.dp),
             style = MaterialTheme.typography.bodyMedium,
-            color = StatusOverdueRed
+            color = MaterialTheme.colorScheme.error
         )
     }
 }

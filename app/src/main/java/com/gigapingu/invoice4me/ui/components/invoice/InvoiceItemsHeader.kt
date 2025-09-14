@@ -25,9 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.ui.theme.GlassWhite20
-import com.gigapingu.invoice4me.ui.theme.GlassWhite25
-import com.gigapingu.invoice4me.ui.theme.TextPrimary
-import com.gigapingu.invoice4me.ui.theme.TextSecondary
 import com.gigapingu.invoice4me.utils.formatCurrency
 
 @Composable
@@ -48,13 +45,13 @@ fun InvoiceItemsHeader(
                 Text(
                     text = "Invoice Items",
                     style = MaterialTheme.typography.titleMedium,
-                    color = TextPrimary,
+                    color = MaterialTheme.colorScheme.onSurface,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     text = "$itemCount ${if (itemCount == 1) "item" else "items"}",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = TextSecondary
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 
@@ -62,8 +59,8 @@ fun InvoiceItemsHeader(
                 onClick = onAddItem,
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = GlassWhite25,
-                    contentColor = TextPrimary
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onSecondaryContainer
                 ),
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp)
             ) {
@@ -97,13 +94,13 @@ fun InvoiceItemsHeader(
                     Text(
                         text = "Items Total",
                         style = MaterialTheme.typography.titleMedium,
-                        color = TextSecondary,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontWeight = FontWeight.Medium
                     )
                     Text(
                         text = formatCurrency(totalAmount),
                         style = MaterialTheme.typography.titleLarge,
-                        color = TextPrimary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         fontWeight = FontWeight.Bold
                     )
                 }

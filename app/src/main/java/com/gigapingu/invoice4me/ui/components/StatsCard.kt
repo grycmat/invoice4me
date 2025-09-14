@@ -27,8 +27,6 @@ import com.gigapingu.invoice4me.ui.theme.GlassBlue1
 import com.gigapingu.invoice4me.ui.theme.GlassPink1
 import com.gigapingu.invoice4me.ui.theme.GlassWhite15
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
-import com.gigapingu.invoice4me.ui.theme.TextPrimary
-import com.gigapingu.invoice4me.ui.theme.TextTertiary
 
 @Composable
 fun StatsCards(invoices: List<Invoice>) {
@@ -95,14 +93,14 @@ fun StatCard(
             Text(
                 text = title,
                 style = MaterialTheme.typography.labelMedium,
-                color = TextTertiary,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontWeight = FontWeight.Medium
             )
             Text(
                 text = value,
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
-                color = TextPrimary
+                color = MaterialTheme.colorScheme.onSurface
             )
         }
     }
