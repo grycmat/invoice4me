@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.ui.theme.GlassWhite15
 import com.gigapingu.invoice4me.ui.theme.GlassWhite30
-import com.gigapingu.invoice4me.ui.theme.Purple40
+import com.gigapingu.invoice4me.ui.theme.GlassWhite60
 import com.gigapingu.invoice4me.ui.theme.TextPrimary
 import com.gigapingu.invoice4me.ui.theme.TextSecondary
 import com.gigapingu.invoice4me.ui.theme.TextTertiary
@@ -77,7 +77,7 @@ fun ThemeToggleCard(
                     onCheckedChange = onThemeToggle,
                     colors = SwitchDefaults.colors(
                         checkedThumbColor = TextPrimary,
-                        checkedTrackColor = Purple40,
+                        checkedTrackColor = GlassWhite60,
                         uncheckedThumbColor = TextSecondary,
                         uncheckedTrackColor = GlassWhite30
                     )
