@@ -38,13 +38,13 @@ private val DarkColorScheme = darkColorScheme(
     inverseSurface = DarkInverseSurface,
     inverseOnSurface = DarkInverseOnSurface,
     inversePrimary = DarkInversePrimary,
-    surfaceDim = DarkSurfaceDim,
-    surfaceBright = DarkSurfaceBright,
-    surfaceContainerLowest = DarkSurfaceContainerLowest,
-    surfaceContainerLow = DarkSurfaceContainerLow,
-    surfaceContainer = DarkSurfaceContainer,
-    surfaceContainerHigh = DarkSurfaceContainerHigh,
-    surfaceContainerHighest = DarkSurfaceContainerHighest
+//    surfaceDim = DarkSurfaceDim,
+//    surfaceBright = DarkSurfaceBright,
+//    surfaceContainerLowest = DarkSurfaceContainerLowest,
+//    surfaceContainerLow = DarkSurfaceContainerLow,
+//    surfaceContainer = DarkSurfaceContainer,
+//    surfaceContainerHigh = DarkSurfaceContainerHigh,
+//    surfaceContainerHighest = DarkSurfaceContainerHighest
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -76,13 +76,13 @@ private val LightColorScheme = lightColorScheme(
     inverseSurface = LightInverseSurface,
     inverseOnSurface = LightInverseOnSurface,
     inversePrimary = LightInversePrimary,
-    surfaceDim = LightSurfaceDim,
-    surfaceBright = LightSurfaceBright,
-    surfaceContainerLowest = LightSurfaceContainerLowest,
-    surfaceContainerLow = LightSurfaceContainerLow,
-    surfaceContainer = LightSurfaceContainer,
-    surfaceContainerHigh = LightSurfaceContainerHigh,
-    surfaceContainerHighest = LightSurfaceContainerHighest
+//    surfaceDim = LightSurfaceDim,
+//    surfaceBright = LightSurfaceBright,
+//    surfaceContainerLowest = LightSurfaceContainerLowest,
+//    surfaceContainerLow = LightSurfaceContainerLow,
+//    surfaceContainer = LightSurfaceContainer,
+//    surfaceContainerHigh = LightSurfaceContainerHigh,
+//    surfaceContainerHighest = LightSurfaceContainerHighest
 )
 
 @Composable

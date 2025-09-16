@@ -1,12 +1,10 @@
 package com.gigapingu.invoice4me.ui.components.invoice
 
-import android.graphics.Bitmap
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,10 +36,7 @@ import androidx.compose.ui.unit.dp
 import com.gigapingu.invoice4me.model.InvoiceItem
 import com.gigapingu.invoice4me.model.InvoiceStatus
 import com.gigapingu.invoice4me.ui.components.ErrorMessage
-import com.gigapingu.invoice4me.ui.theme.GlassWhite20
 import com.gigapingu.invoice4me.utils.createInvoicePdf
-import dev.shreyaspatil.capturable.capturable
-import dev.shreyaspatil.capturable.controller.rememberCaptureController
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -57,7 +52,6 @@ fun InvoiceFormCard(
     onOpenPreview: () -> Unit
 ) {
 
-    val captureController = rememberCaptureController()
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
@@ -241,9 +235,9 @@ fun InvoiceFormCard(
             )
 
             // Capturable invoice content for PDF generation
-            Box(Modifier.capturable(captureController)) {
-                InvoicePreviewContent(formState = formState)
-            }
+//            Box(Modifier.capturable(captureController)) {
+//                InvoicePreviewContent(formState = formState)
+//            }
 
             Button(
                 onClick = {

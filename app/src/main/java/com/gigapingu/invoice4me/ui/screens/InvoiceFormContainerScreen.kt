@@ -1,6 +1,5 @@
 package com.gigapingu.invoice4me.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,7 +17,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -34,13 +32,12 @@ import com.gigapingu.invoice4me.ui.components.invoice.InvoiceFormCard
 import com.gigapingu.invoice4me.ui.components.invoice.InvoiceFormHeader
 import com.gigapingu.invoice4me.ui.components.invoice.InvoiceFormState
 import com.gigapingu.invoice4me.ui.components.invoice.validateForm
-import com.gigapingu.invoice4me.ui.theme.GlassBlue1
-import com.gigapingu.invoice4me.ui.theme.GlassPink1
 import com.gigapingu.invoice4me.utils.generateInvoiceId
 import com.gigapingu.invoice4me.utils.getCurrentDate
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun InvoiceFormContainerScreen(
     modifier: Modifier = Modifier,
@@ -79,14 +76,12 @@ fun InvoiceFormContainerScreen(
         )
     }
 
-    // Update items when external state changes
     LaunchedEffect(initialItems) {
         if (formState.items != initialItems) {
             formState = formState.copy(items = initialItems)
         }
     }
 
-    // Notify parent when items change
     LaunchedEffect(formState.items) {
         onItemsChanged(formState.items)
     }

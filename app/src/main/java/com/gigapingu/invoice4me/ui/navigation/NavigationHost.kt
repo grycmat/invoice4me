@@ -1,16 +1,16 @@
 package com.gigapingu.invoice4me.ui.navigation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.gigapingu.invoice4me.PdfPrinter
-import com.gigapingu.invoice4me.TempInvoicePdf
 import com.gigapingu.invoice4me.model.InvoiceItem
 import com.gigapingu.invoice4me.ui.components.invoice.InvoiceItemFormScreen
 import com.gigapingu.invoice4me.ui.navigation.routes.Routes
@@ -27,7 +27,7 @@ fun NavigationHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Routes.Home.route
+        startDestination = Routes.Home.route,
     ) {
         composable(Routes.Home.route) {
             DashboardScreen(

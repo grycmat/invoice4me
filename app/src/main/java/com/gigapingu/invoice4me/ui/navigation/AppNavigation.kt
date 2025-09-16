@@ -1,22 +1,27 @@
 package com.gigapingu.invoice4me.ui.navigation
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.gigapingu.invoice4me.ui.navigation.routes.Routes
-import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
+import com.gigapingu.invoice4me.ui.theme.GlassDark10
 import com.gigapingu.invoice4me.ui.theme.GlassWhite50
-import com.gigapingu.invoice4me.ui.theme.GlassWhite60
-import com.gigapingu.invoice4me.ui.theme.GlassDark20
+import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
+import com.gigapingu.invoice4me.ui.theme.LocalIsDarkTheme
 
 data class AppNavItem(
     val label: String,
@@ -34,14 +39,15 @@ val navigationItems = listOf(
 fun AppNavigation(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
-    // Theme-aware navigation with enhanced glassmorphism overlays
+    val isDarkTheme = LocalIsDarkTheme.current
+
 
     NavigationBar(
-        containerColor = if (isSystemInDarkTheme()) {
-            GlassDark20 // Enhanced dark glassmorphism overlay
+        containerColor = if (isDarkTheme) {
+            GlassDark10
         } else {
-            GlassWhite50 // Enhanced light glassmorphism overlay
-        }
+            GlassWhite50
+        },
     ) {
         navigationItems.forEach { item ->
             NavigationBarItem(
@@ -50,11 +56,8 @@ fun AppNavigation(navController: NavController) {
                     selectedTextColor = MaterialTheme.colorScheme.primary,
                     unselectedIconColor = MaterialTheme.colorScheme.onSecondaryContainer,
                     unselectedTextColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                    indicatorColor = if (isSystemInDarkTheme()) {
-                        MaterialTheme.colorScheme.surfaceContainerHigh // Theme-aware dark selection
-                    } else {
-                        MaterialTheme.colorScheme.surfaceContainerHigh // Theme-aware light selection
-                    }
+                    indicatorColor =
+                        MaterialTheme.colorScheme.surface
                 ),
                 selected = currentRoute == item.route,
                 onClick = {

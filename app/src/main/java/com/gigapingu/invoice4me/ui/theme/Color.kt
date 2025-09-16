@@ -68,8 +68,8 @@ val DarkOnErrorContainer = Color(0xFFFFE6E6)
 
 val DarkBackground = Color(0xFF0A0C10)
 val DarkOnBackground = Color(0xFFE8EAEF)
-val DarkSurface = Color(0xFF0A0C10)
-val DarkOnSurface = Color(0xFFE8EAEF)
+val DarkSurface = Color(0x660A0C10)
+val DarkOnSurface = Color(0xFFD2D2D2)
 val DarkSurfaceVariant = Color(0xFF474A5C)
 val DarkOnSurfaceVariant = Color(0xFFC7CADB)
 
