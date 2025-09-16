@@ -8,6 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -31,21 +35,20 @@ import com.gigapingu.invoice4me.ui.InvoiceViewModelFactory
 import com.gigapingu.invoice4me.ui.components.invoice.InvoiceFormCard
 import com.gigapingu.invoice4me.ui.components.invoice.InvoiceFormHeader
 import com.gigapingu.invoice4me.ui.components.invoice.InvoiceFormState
+import com.gigapingu.invoice4me.ui.components.invoice.InvoiceItemFormScreen
 import com.gigapingu.invoice4me.ui.components.invoice.validateForm
 import com.gigapingu.invoice4me.utils.generateInvoiceId
 import com.gigapingu.invoice4me.utils.getCurrentDate
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun InvoiceFormContainerScreen(
     modifier: Modifier = Modifier,
     initialItems: List<InvoiceItem> = emptyList(),
     initialInvoice: Invoice? = null,
     onNavigateBack: () -> Unit = {},
-    onNavigateToAddItem: () -> Unit = {},
-    onNavigateToEditItem: (InvoiceItem) -> Unit = {},
     onItemsChanged: (List<InvoiceItem>) -> Unit = {},
     onOpenPreview: () -> Unit = {},
     contentPadding: PaddingValues = PaddingValues(0.dp)
@@ -75,6 +78,10 @@ fun InvoiceFormContainerScreen(
             }
         )
     }
+
+    var isSheetOpen by remember { mutableStateOf(false) }
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    var editingItem by remember { mutableStateOf<InvoiceItem?>(null) }
 
     LaunchedEffect(initialItems) {
         if (formState.items != initialItems) {
@@ -129,6 +136,32 @@ fun InvoiceFormContainerScreen(
         }
     }
 
+    if (isSheetOpen) {
+        ModalBottomSheet(
+            onDismissRequest = { isSheetOpen = false },
+            sheetState = sheetState,
+            scrimColor = MaterialTheme.colorScheme.scrim.copy(alpha = 0.9f)
+        ) {
+            InvoiceItemFormScreen(
+                itemToEdit = editingItem,
+                onSave = { item ->
+                    formState = if (editingItem == null) {
+                        formState.copy(items = formState.items + item)
+                    } else {
+                        formState.copy(items = formState.items.map { if (it.itemId == item.itemId) item else it })
+                    }
+                    isSheetOpen = false
+                    editingItem = null
+                    Result.success(Unit)
+                },
+                onNavigateBack = {
+                    isSheetOpen = false
+                    editingItem = null
+                }
+            )
+        }
+    }
+
     Box(
         modifier = modifier
             .gradientBackground()
@@ -157,8 +190,14 @@ fun InvoiceFormContainerScreen(
                     }
                 },
                 onCancel = onNavigateBack,
-                onNavigateToAddItem = onNavigateToAddItem,
-                onNavigateToEditItem = onNavigateToEditItem,
+                onNavigateToAddItem = {
+                    editingItem = null
+                    isSheetOpen = true
+                },
+                onNavigateToEditItem = {
+                    editingItem = it
+                    isSheetOpen = true
+                },
                 focusManager = focusManager,
                 onOpenPreview = onOpenPreview
             )

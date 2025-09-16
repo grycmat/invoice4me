@@ -2,7 +2,16 @@ package com.gigapingu.invoice4me.ui.components.invoice
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -10,16 +19,29 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
@@ -27,37 +49,36 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.gigapingu.invoice4me.model.*
-import com.gigapingu.invoice4me.modifier.gradientBackground
+import com.gigapingu.invoice4me.model.InvoiceItem
+import com.gigapingu.invoice4me.model.InvoiceItemFormState
+import com.gigapingu.invoice4me.model.UnitType
 import com.gigapingu.invoice4me.ui.components.ErrorMessage
-import com.gigapingu.invoice4me.ui.theme.GlassBlue1
-import com.gigapingu.invoice4me.ui.theme.GlassPink1
-import com.gigapingu.invoice4me.ui.theme.GlassWhite20
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
-import com.gigapingu.invoice4me.utils.*
-import kotlinx.coroutines.delay
+import com.gigapingu.invoice4me.utils.formatCurrency
+import com.gigapingu.invoice4me.utils.formatQuantity
+import com.gigapingu.invoice4me.utils.generateInvoiceItemId
+import com.gigapingu.invoice4me.utils.validatePriceInput
+import com.gigapingu.invoice4me.utils.validateQuantityInput
 import kotlinx.coroutines.launch
 import java.util.Locale
 
-@OptIn(ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun InvoiceItemFormScreen(
-    modifier: Modifier = Modifier,
-    initialItem: InvoiceItem? = null,
+    itemToEdit: InvoiceItem? = null,
     onNavigateBack: () -> Unit = {},
-    onSave: suspend (InvoiceItem) -> Result<Unit> = { Result.success(Unit) },
-    contentPadding: PaddingValues = PaddingValues(0.dp)
+    onSave: (InvoiceItem) -> Result<Unit> = { Result.success(Unit) }
 ) {
     var formState by remember {
         mutableStateOf(
-            if (initialItem != null) {
+            if (itemToEdit != null) {
                 InvoiceItemFormState(
-                    tempId = initialItem.tempId,
-                    name = initialItem.name,
-                    legalBasis = initialItem.legalBasis,
-                    quantity = formatQuantity(initialItem.quantity),
-                    unitType = initialItem.unitType,
-                    pricePerUnit = String.format(Locale.ROOT, "%.2f", initialItem.pricePerUnit)
+                    tempId = itemToEdit.tempId,
+                    name = itemToEdit.name,
+                    legalBasis = itemToEdit.legalBasis,
+                    quantity = formatQuantity(itemToEdit.quantity),
+                    unitType = itemToEdit.unitType,
+                    pricePerUnit = String.format(Locale.ROOT, "%.2f", itemToEdit.pricePerUnit)
                 )
             } else {
                 InvoiceItemFormState(
@@ -71,9 +92,9 @@ fun InvoiceItemFormScreen(
     val focusManager = LocalFocusManager.current
     val coroutineScope = rememberCoroutineScope()
 
-    suspend fun handleSave() {
+    fun handleSave() {
         keyboardController?.hide()
-        
+
         val validation = validateInvoiceItemForm(formState)
         if (validation.isNotEmpty()) {
             formState = formState.copy(errors = validation)
@@ -81,7 +102,7 @@ fun InvoiceItemFormScreen(
         }
 
         formState = formState.copy(isLoading = true, errors = emptyMap())
-        
+
         try {
             val item = InvoiceItem(
                 invoiceId = "", // Not associated with an invoice yet
@@ -92,10 +113,9 @@ fun InvoiceItemFormScreen(
                 unitType = formState.unitType,
                 pricePerUnit = formState.pricePerUnit.toDouble()
             )
-            
+
             val result = onSave(item)
-            delay(500) // UX feedback delay
-            
+
             result.fold(
                 onSuccess = { onNavigateBack() },
                 onFailure = { error ->
@@ -113,37 +133,32 @@ fun InvoiceItemFormScreen(
         }
     }
 
-    Box(
-        modifier = modifier
-            .gradientBackground()
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
+            .padding(20.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
-        ) {
-            InvoiceItemFormHeader(
-                title = if (initialItem != null) "Edit Item" else "Add Item",
-                onNavigateBack = onNavigateBack
-            )
+        InvoiceItemFormHeader(
+            title = if (itemToEdit != null) "Edit Item" else "Add Item",
+            onNavigateBack = onNavigateBack
+        )
 
-            InvoiceItemFormCard(
-                formState = formState,
-                onStateChange = { formState = it },
-                onSave = { 
-                    if (!formState.isLoading) {
-                        focusManager.clearFocus()
-                        coroutineScope.launch {
-                            handleSave()
-                        }
+        InvoiceItemFormCard(
+            formState = formState,
+            onStateChange = { formState = it },
+            onSave = {
+                if (!formState.isLoading) {
+                    focusManager.clearFocus()
+                    coroutineScope.launch {
+                        handleSave()
                     }
-                },
-                onCancel = onNavigateBack,
-                focusManager = focusManager
-            )
-        }
+                }
+            },
+            onCancel = onNavigateBack,
+            focusManager = focusManager
+        )
     }
 }
 
@@ -170,9 +185,9 @@ private fun InvoiceItemFormHeader(
                 modifier = Modifier.size(20.dp)
             )
         }
-        
+
         Spacer(modifier = Modifier.width(16.dp))
-        
+
         Text(
             text = title,
             style = MaterialTheme.typography.headlineSmall,
@@ -211,7 +226,7 @@ private fun InvoiceItemFormCard(
             InvoiceFormField(
                 label = "Item Name",
                 value = formState.name,
-                onValueChange = { 
+                onValueChange = {
                     onStateChange(formState.copy(name = it, errors = formState.errors - "name"))
                 },
                 placeholder = "Enter item name",
@@ -229,7 +244,7 @@ private fun InvoiceItemFormCard(
             InvoiceFormField(
                 label = "Legal Basis (Optional)",
                 value = formState.legalBasis,
-                onValueChange = { 
+                onValueChange = {
                     onStateChange(formState.copy(legalBasis = it, errors = formState.errors - "legalBasis"))
                 },
                 placeholder = "Tax/legal reference",
@@ -275,7 +290,7 @@ private fun InvoiceItemFormCard(
                 Column(modifier = Modifier.weight(1f)) {
                     UnitTypeSelector(
                         selectedUnit = formState.unitType,
-                        onUnitSelected = { 
+                        onUnitSelected = {
                             onStateChange(formState.copy(unitType = it))
                         }
                     )
@@ -445,6 +460,6 @@ fun InvoiceItemFormScreenEditPreview() {
             unitType = UnitType.HOURS,
             pricePerUnit = 75.0
         )
-        InvoiceItemFormScreen(initialItem = sampleItem)
+        InvoiceItemFormScreen(itemToEdit = sampleItem)
     }
 }

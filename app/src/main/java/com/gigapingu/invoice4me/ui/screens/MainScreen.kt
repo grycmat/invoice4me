@@ -9,9 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -19,7 +16,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.gigapingu.invoice4me.Invoice4MeApplication
-import com.gigapingu.invoice4me.model.InvoiceItem
 import com.gigapingu.invoice4me.navigation.LocalNavController
 import com.gigapingu.invoice4me.ui.navigation.AppNavigation
 import com.gigapingu.invoice4me.ui.navigation.NavigationHost
@@ -37,7 +33,6 @@ fun MainScreen() {
     val navController = rememberNavController()
     val isThemeLoaded by viewModel.isThemeLoaded.collectAsState()
     val isDarkTheme by viewModel.isDarkTheme.collectAsState()
-    var editingItem by remember { mutableStateOf<InvoiceItem?>(null) }
 
     if (!isThemeLoaded) {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -56,7 +51,7 @@ fun MainScreen() {
                 containerColor = MaterialTheme.colorScheme.background,
                 bottomBar = { AppNavigation(navController) }
             ) { innerPadding ->
-                NavigationHost(navController, innerPadding, editingItem)
+                NavigationHost(navController, innerPadding)
             }
         }
     }

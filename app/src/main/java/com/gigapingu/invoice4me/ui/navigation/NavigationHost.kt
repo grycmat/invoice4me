@@ -1,18 +1,12 @@
 package com.gigapingu.invoice4me.ui.navigation
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import com.gigapingu.invoice4me.model.InvoiceItem
-import com.gigapingu.invoice4me.ui.components.invoice.InvoiceItemFormScreen
 import com.gigapingu.invoice4me.ui.navigation.routes.Routes
 import com.gigapingu.invoice4me.ui.screens.DashboardScreen
 import com.gigapingu.invoice4me.ui.screens.InvoiceFormContainerScreen
@@ -22,8 +16,7 @@ import com.gigapingu.invoice4me.ui.screens.SettingsScreen
 @Composable
 fun NavigationHost(
     navController: NavHostController,
-    innerPadding: PaddingValues,
-    editingItem: InvoiceItem?
+    innerPadding: PaddingValues
 ) {
     NavHost(
         navController = navController,
@@ -42,44 +35,9 @@ fun NavigationHost(
                 onNavigateBack = {
                     navController.popBackStack()
                 },
-                onNavigateToAddItem = {
-                    navController.navigate(Routes.AddInvoiceItem.route)
-                },
-                onNavigateToEditItem = { item ->
-                    navController.navigate(Routes.EditInvoiceItem.createRoute(item.tempId))
-                },
                 onItemsChanged = { items ->
                 },
-                onOpenPreview = {navController.navigate(Routes.PdfPreview.route)
-                }
-            )
-        }
-        composable(Routes.AddInvoiceItem.route) {
-            InvoiceItemFormScreen(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = innerPadding,
-                onNavigateBack = { navController.popBackStack() },
-                onSave = { item ->
-                    Result.success(Unit)
-                }
-            )
-        }
-        composable(
-            route = Routes.EditInvoiceItem.route,
-            arguments = listOf(
-                navArgument("itemId") { type = NavType.StringType }
-            )
-        ) { backStackEntry ->
-            val itemId = backStackEntry.arguments?.getString("itemId")
-
-            InvoiceItemFormScreen(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = innerPadding,
-                onNavigateBack = { navController.popBackStack() },
-                onSave = { updatedItem ->
-
-                    Result.success(Unit)
-                }
+                onOpenPreview = { navController.navigate(Routes.PdfPreview.route) }
             )
         }
         composable(Routes.Settings.route) {
