@@ -6,7 +6,6 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -94,7 +93,15 @@ fun InvoiceFormCard(
         }
 
 
-    val content: ColumnScope.() -> Unit = {
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+    ) {
         Column(
             modifier = Modifier.padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
@@ -254,13 +261,5 @@ fun InvoiceFormCard(
 
         }
     }
-    Card(
-           modifier = Modifier.fillMaxWidth(),
-           shape = RoundedCornerShape(20.dp),
-           colors = CardDefaults.cardColors(
-               containerColor = MaterialTheme.colorScheme.surface
-           ),
-           elevation = CardDefaults.cardElevation(defaultElevation = 0.dp), content = content
-    )
 }
 
