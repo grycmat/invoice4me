@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -29,15 +30,20 @@ import com.gigapingu.invoice4me.ui.theme.GlassPink1
 import com.gigapingu.invoice4me.ui.theme.GlassWhite15
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InvoiceCard(invoice: Invoice) {
+fun InvoiceCard(
+    invoice: Invoice,
+    onClick: () -> Unit = {}
+) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+        onClick = onClick
     ) {
         Row(
             modifier = Modifier

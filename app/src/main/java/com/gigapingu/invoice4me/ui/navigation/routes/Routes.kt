@@ -3,6 +3,9 @@ package com.gigapingu.invoice4me.ui.navigation.routes
 sealed class Routes(val route: String) {
     object Home : Routes("home")
     object AddInvoice : Routes("add_invoice")
+    object EditInvoice : Routes("edit_invoice/{invoiceId}") {
+        fun createRoute(invoiceId: String) = "edit_invoice/$invoiceId"
+    }
     object Settings : Routes("settings")
     object InvoiceDetails : Routes("invoice_details/{invoiceId}") {
         fun createRoute(invoiceId: String) = "invoice_details/$invoiceId"

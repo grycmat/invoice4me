@@ -26,9 +26,11 @@ import com.gigapingu.invoice4me.data.sampleInvoices
 import com.gigapingu.invoice4me.modifier.gradientBackground
 import com.gigapingu.invoice4me.ui.InvoiceViewModel
 import com.gigapingu.invoice4me.ui.InvoiceViewModelFactory
+import com.gigapingu.invoice4me.navigation.LocalNavController
 import com.gigapingu.invoice4me.ui.components.DashboardHeader
 import com.gigapingu.invoice4me.ui.components.InvoiceCard
 import com.gigapingu.invoice4me.ui.components.StatsCards
+import com.gigapingu.invoice4me.ui.navigation.routes.Routes
 import com.gigapingu.invoice4me.ui.theme.GlassBlue1
 import com.gigapingu.invoice4me.ui.theme.GlassPink1
 import com.gigapingu.invoice4me.ui.theme.Invoice4MeTheme
@@ -39,6 +41,7 @@ fun DashboardScreen(modifier: Modifier = Modifier, contentPadding: PaddingValues
     val layoutDirection = LocalLayoutDirection.current
     val combinedPadding = calculatePadding(contentPadding, layoutDirection)
     val context = LocalContext.current
+    val navController = LocalNavController.current
     val invoiceViewModel: InvoiceViewModel = viewModel(
         factory = InvoiceViewModelFactory((context.applicationContext as Invoice4MeApplication).repository)
     )
@@ -73,7 +76,12 @@ fun DashboardScreen(modifier: Modifier = Modifier, contentPadding: PaddingValues
             }
 
             items(invoices) { invoice ->
-                InvoiceCard(invoice = invoice)
+                InvoiceCard(
+                    invoice = invoice,
+                    onClick = {
+                        navController.navigate(Routes.EditInvoice.createRoute(invoice.id))
+                    }
+                )
             }
         }
     }
