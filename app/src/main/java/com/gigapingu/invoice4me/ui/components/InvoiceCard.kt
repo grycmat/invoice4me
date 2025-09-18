@@ -18,9 +18,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.gigapingu.invoice4me.R
 import com.gigapingu.invoice4me.model.Invoice
 import com.gigapingu.invoice4me.model.InvoiceStatus
 import com.gigapingu.invoice4me.modifier.gradientBackground
@@ -90,25 +92,25 @@ fun StatusChip(status: InvoiceStatus) {
         InvoiceStatus.PAID -> Triple(
             MaterialTheme.colorScheme.secondaryContainer,
             MaterialTheme.colorScheme.onSecondaryContainer,
-            "Paid"
+            stringResource(id = R.string.status_chip_paid)
         )
         InvoiceStatus.SENT -> Triple(
             MaterialTheme.colorScheme.primaryContainer,
             MaterialTheme.colorScheme.primary,
-            "Sent"
+            stringResource(id = R.string.status_chip_sent)
         )
         InvoiceStatus.DRAFT -> Triple(
             MaterialTheme.colorScheme.surfaceVariant,
             MaterialTheme.colorScheme.onSurfaceVariant,
-            "Draft"
+            stringResource(id = R.string.status_chip_draft)
         )
         InvoiceStatus.OVERDUE -> Triple(
             MaterialTheme.colorScheme.errorContainer,
             MaterialTheme.colorScheme.error,
-            "Overdue"
+            stringResource(id = R.string.status_chip_overdue)
         )
     }
-    
+
     Surface(
         shape = RoundedCornerShape(20.dp),
         color = backgroundColor

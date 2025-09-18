@@ -17,10 +17,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.gigapingu.invoice4me.R
 import com.gigapingu.invoice4me.Invoice4MeApplication
 import com.gigapingu.invoice4me.data.sampleInvoices
 import com.gigapingu.invoice4me.modifier.gradientBackground
@@ -64,7 +66,7 @@ fun DashboardScreen(modifier: Modifier = Modifier, contentPadding: PaddingValues
 
             item {
                 Text(
-                    text = "Recent Invoices",
+                    text = stringResource(id = R.string.dashboard_recent_invoices),
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface,

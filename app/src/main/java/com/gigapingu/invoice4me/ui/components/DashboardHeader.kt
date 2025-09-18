@@ -9,9 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.gigapingu.invoice4me.R
 import com.gigapingu.invoice4me.ui.theme.*
 
 @Composable
@@ -23,7 +25,7 @@ fun DashboardHeader() {
             .height(140.dp),
         shape = cardShape,
         colors = CardDefaults.cardColors(
-            containerColor = Color.Transparent 
+            containerColor = Color.Transparent
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
@@ -34,21 +36,21 @@ fun DashboardHeader() {
         ) {
             Column {
                 Text(
-                    text = "Invoice Dashboard",
+                    text = stringResource(id = R.string.dashboard_header_title),
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "Manage your invoices efficiently",
+                    text = stringResource(id = R.string.dashboard_header_subtitle),
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
             Icon(
                 imageVector = Icons.Default.Menu,
-                contentDescription = null,
+                contentDescription = stringResource(id = R.string.dashboard_header_menu_icon_desc),
                 modifier = Modifier
                     .align(Alignment.CenterEnd)
                     .size(32.dp),
