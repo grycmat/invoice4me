@@ -13,9 +13,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.gigapingu.invoice4me.R
 import androidx.navigation.compose.rememberNavController
 import com.gigapingu.invoice4me.ui.navigation.routes.Routes
 import com.gigapingu.invoice4me.ui.theme.GlassDark10
@@ -29,11 +31,13 @@ data class AppNavItem(
     val route: String
 )
 
-val navigationItems = listOf(
-    AppNavItem("Home", Icons.Filled.Home, Routes.Home.route),
-    AppNavItem("Add", Icons.Filled.Add, Routes.AddInvoice.route),
-    AppNavItem("Settings", Icons.Filled.Settings, Routes.Settings.route)
-)
+val navigationItems
+    @Composable
+    get() = listOf(
+        AppNavItem(stringResource(id = R.string.bottom_nav_home), Icons.Filled.Home, Routes.Home.route),
+        AppNavItem(stringResource(id = R.string.bottom_nav_add), Icons.Filled.Add, Routes.AddInvoice.route),
+        AppNavItem(stringResource(id = R.string.bottom_nav_settings), Icons.Filled.Settings, Routes.Settings.route)
+    )
 
 @Composable
 fun AppNavigation(navController: NavController) {

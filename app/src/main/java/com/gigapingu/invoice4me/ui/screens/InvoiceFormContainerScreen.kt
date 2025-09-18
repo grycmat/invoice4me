@@ -24,8 +24,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.gigapingu.invoice4me.R
 import com.gigapingu.invoice4me.Invoice4MeApplication
 import com.gigapingu.invoice4me.model.Invoice
 import com.gigapingu.invoice4me.model.InvoiceItem
@@ -131,7 +133,7 @@ fun InvoiceFormContainerScreen(
         } catch (e: Exception) {
             formState = formState.copy(
                 isLoading = false,
-                errors = mapOf("general" to "Invalid input data")
+                errors = mapOf("general" to e.message ?: stringResource(id = R.string.error_invalid_input))
             )
         }
     }
@@ -174,7 +176,7 @@ fun InvoiceFormContainerScreen(
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             InvoiceFormHeader(
-                title = if (initialInvoice != null) "Edit Invoice" else "New Invoice",
+                title = if (initialInvoice != null) stringResource(id = R.string.invoice_form_edit_title) else stringResource(id = R.string.invoice_form_new_title),
                 onNavigateBack = onNavigateBack
             )
 
