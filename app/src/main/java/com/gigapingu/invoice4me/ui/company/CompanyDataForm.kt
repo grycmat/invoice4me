@@ -20,8 +20,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.gigapingu.invoice4me.R
 import com.gigapingu.invoice4me.model.CompanyData
 import com.gigapingu.invoice4me.ui.theme.GlassWhite15
 
@@ -62,52 +64,52 @@ fun CompanyDataForm(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
-                text = "Company Information",
+                text = stringResource(id = R.string.company_info_title),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.onSurface
             )
 
             Text(
-                text = "This information will appear on your invoices",
+                text = stringResource(id = R.string.company_info_subtitle),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 
             CompanyDataField(
-                label = "Company Name",
+                label = stringResource(id = R.string.company_info_name_label),
                 value = localCompanyData.name,
                 onValueChange = { localCompanyData = localCompanyData.copy(name = it) },
-                placeholder = "Enter your company name"
+                placeholder = stringResource(id = R.string.company_info_name_placeholder)
             )
 
             CompanyDataField(
-                label = "Address",
+                label = stringResource(id = R.string.company_info_address_label),
                 value = localCompanyData.address,
                 onValueChange = { localCompanyData = localCompanyData.copy(address = it) },
-                placeholder = "Enter your company address"
+                placeholder = stringResource(id = R.string.company_info_address_placeholder)
             )
 
             CompanyDataField(
-                label = "Email",
+                label = stringResource(id = R.string.company_info_email_label),
                 value = localCompanyData.email,
                 onValueChange = { localCompanyData = localCompanyData.copy(email = it) },
-                placeholder = "company@example.com"
+                placeholder = stringResource(id = R.string.company_info_email_placeholder)
             )
 
             CompanyDataField(
-                label = "Phone",
+                label = stringResource(id = R.string.company_info_phone_label),
                 value = localCompanyData.phone,
-                onValueChange = { localCompanyData = localCompanyData.copy(phone = it) },
-                placeholder = "+1 (555) 123-4567"
+                onValue-Change = { localCompanyData = localCompanyData.copy(phone = it) },
+                placeholder = stringResource(id = R.string.company_info_phone_placeholder)
             )
 
             CompanyDataField(
-                label = "Tax ID",
+                label = stringResource(id = R.string.company_info_tax_id_label),
                 value = localCompanyData.taxId,
                 onValueChange = { localCompanyData = localCompanyData.copy(taxId = it) },
-                placeholder = "Enter your tax identification number"
+                placeholder = stringResource(id = R.string.company_info_tax_id_placeholder)
             )
 
 
@@ -122,7 +124,7 @@ fun CompanyDataForm(
                     if (isSaving) {
                         CircularProgressIndicator()
                     } else {
-                        Text("Save")
+                        Text(stringResource(id = R.string.company_info_save_button))
                     }
                 }
             }
